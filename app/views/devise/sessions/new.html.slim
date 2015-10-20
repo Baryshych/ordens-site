@@ -1,20 +1,19 @@
 .row
-  .span4.offset6
+  .col-xs-4.col-xs-offset-4
     h2
       | Вхід в систему
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .field
-        | Емейл
-        br
-        = f.email_field :email, autofocus: true, class: 'w100', required: true
+        = f.email_field :email, class: 'w100 form-control floating-label', required: true, placeholder: 'Емейл'
+      br
       .field
-        | Пароль
-        br
-        = f.password_field :password, autocomplete: "off", class: 'w100', required: true
+        = f.password_field :password, autocomplete: "off", class: 'w100 form-control floating-label', required: true, placeholder: 'Пароль'
       - if devise_mapping.rememberable?
-        .field
-          = f.check_box :remember_me, style: 'margin-right:15px;margin-top:-2px;'
-          span Запам’ятати мене
+        .checkbox
+          label
+            = f.check_box :remember_me
+            span style='margin-left:15px;' Запам’ятати мене
+
         br
       .actions
         = f.submit "Увійти", class: 'btn btn-primary'

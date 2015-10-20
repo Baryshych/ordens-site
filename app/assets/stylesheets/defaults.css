@@ -223,7 +223,6 @@ input.hasDatepick {
 }
 .decor {
 	font-weight: bold;
-	font-style: italic;
 	color: rgb(35, 110, 206);
 }
 .row {
@@ -295,4 +294,15 @@ input.hasDatepick {
 }
 .switch-animate {
   height: 26px;
+}
+.b-white {
+  background: #fff;
+}
+.plate {
+  width: 100%;
+  text-align: center;
+}
+.plate .decor {
+  display: block;
+  margin-top: 15px;
 }

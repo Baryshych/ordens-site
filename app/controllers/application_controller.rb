@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_login_page
     if current_user.nil?
-      redirect_to new_user_session_page and return
+      redirect_to new_user_session_path and return
     end
   end
 
   def after_sign_in_path_for(resource)
-    dashboard_path
+    root_path
   end
 end

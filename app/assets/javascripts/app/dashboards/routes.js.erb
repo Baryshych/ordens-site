@@ -1,0 +1,14 @@
+module.config(['$stateProvider', '$urlRouterProvider',
+  function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('main', {
+        url: '/',
+        templateUrl: "<%= asset_url 'dashboards/index' %>"
+      })
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: "<%= asset_url 'dashboards/index' %>",
+        controller: 'DashboardCtrl'
+      })
+    $urlRouterProvider.otherwise('/#')
+}]);

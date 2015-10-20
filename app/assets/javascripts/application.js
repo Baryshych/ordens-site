@@ -12,4 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require angular
+//= require angular-animate
+//= require angular-cookies
+//= require angular-resource
+//= require angular-route
+//= require_tree ./angular
+//= require app
 //= require_tree .
+//= require init
