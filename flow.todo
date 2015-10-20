@@ -1,0 +1,30 @@
+  * Repeat database structure *
+    □ Generate models
+      ✔ award_type @done (19.10.15 23:58)
+      ✔ award_category @done (19.10.15 23:58)
+      ✔ document_quality @done (19.10.15 23:59)
+      ✔ education_degree @done (19.10.15 23:59)
+      ✔ science_degree @done (19.10.15 23:59)
+      ✔ petition_initiator @done (20.10.15 00:00)
+      ✔ workplace @done (20.10.15 00:01)
+    □ Add validations and relations
+    □ Create database import script
+  * Build interface *
+    □ Add bootstrap 3
+    □ Add bootstrap theme
+    □ Add inspinia-styled toastr
+    □ Add angular
+      □ bootstrap directives
+      □ angular will paginate
+      □ ui-router
+        □ dasboard
+        □ profiles
+        □ edit profile
+        □ edit award
+      □ restmod
+        □ profile
+        □ award
+    □ List profiles page
+    □ Add/edit profile
+
+

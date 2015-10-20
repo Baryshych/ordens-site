@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: orden_site_dev
+  host: localhost
+  pool: 5
+  username: postgres
+  password: password
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: orden_site_test
+  host: localhost
+  pool: 5
+  username: postgres
+  password: password

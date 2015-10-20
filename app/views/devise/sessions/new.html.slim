@@ -1,0 +1,21 @@
+.row
+  .span4.offset6
+    h2
+      | Вхід в систему
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .field
+        | Емейл
+        br
+        = f.email_field :email, autofocus: true, class: 'w100', required: true
+      .field
+        | Пароль
+        br
+        = f.password_field :password, autocomplete: "off", class: 'w100', required: true
+      - if devise_mapping.rememberable?
+        .field
+          = f.check_box :remember_me, style: 'margin-right:15px;margin-top:-2px;'
+          span Запам’ятати мене
+        br
+      .actions
+        = f.submit "Увійти", class: 'btn btn-primary'
+    = render "devise/shared/links"

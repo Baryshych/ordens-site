@@ -1,0 +1,47 @@
+doctype html
+html
+  head
+    title
+      | Департамент роботи з персоналом та керівними кадрами
+    link href=("/favicon.ico") rel=("shortcut icon") type="image/x-icon"
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  body
+    .hover hidden="hidden" 
+      .aloader
+        img src=("/images/loader.gif") /
+    header#header.clearfix role="banner" 
+      .section
+        .section-1
+          .logo
+            a#logo.base_url href=("") rel="home" title=("На головну") 
+              img alt="Герб" src=("/images/logo.png") /
+          .site-name
+            span.mon Міністерство освіти і науки України
+            a href=("") title=("На головну") 
+              span Департамент роботи з персоналом та керівними кадрами
+        .section-2
+          ul.topmenu
+            - if current_user.present?
+              li
+                a href="#" 
+                  | Menu link
+            - else
+              li
+                a href=new_user_session_path
+                  | Увійти
+      li
+        span анкор?
+    #maincontent
+      .inner.main
+        - if flash.any?
+          br
+          .row
+            .span12.offset3
+              - flash.each do |name, msg|
+                - if msg.is_a?(String)
+                  div class="alert alert-#{name.to_s == 'notice' ? 'success' : 'danger'}"
+                    button.close[type="button" data-dismiss="alert" aria-hidden="true"] ×
+                    = content_tag :div, msg, :id => "flash_#{name}"
+        == yield

@@ -1,0 +1,249 @@
+#    Українська локалізація
+aliases:
+  &errors
+    blank:      '- поле не може бути пустим'
+    too_short:  'містить замало символів (необхідно не менше ніж %{count})'
+    invalid:    'введено невірно'
+    confirmation: 'не збігається з паролем'
+    taken:        'вже використовується'
+
+uk:
+#глобальні
+  hello:			      'Доброго дня!'
+  site_title:		    'База науковців України'
+  signin:           'Авторизація користувача'
+  login:			      'Увійти'
+  logout:			      'Вийти'
+  homepage:			    'Головна сторінка'
+  action_confirm:   'Ви точно хочете виконати цю дію?'
+  remember_me:      "Запам'ятати мене"
+  profile:          'Профіль'
+  profile:          'Редагувати профіль'
+  email_or_login:   'Електронна пошта або логін'
+  password:         'Пароль'
+  create:           'Створити'
+  view:             'Переглянути'
+  edit:             'Редагувати'
+  delete:           'Видалити'
+  save:             'Зберегти'
+  actions:          'Дії'
+  no_selected:       ' - не вибрано жодного'
+  administration:    'Адміністрування'
+  adress:           'Адреса'
+#
+  edit_profile:     'Редагувати обліковий запис'
+  leave_it_blank:   'Залиште пустим, якщо не хочете змінювати пароль'
+  profile_activated: 'Ваш профіль активовано.'
+  name:               "Ім'я"
+#статті
+  all_articles:     'Всі статті'
+  title:            'Назва'
+  content:          'Вміст'
+  save_changes:     'Зберегти зміни'
+  article_created:  'Стаття успішно створена.'
+  article_updated:  'Стаття успішно оновлена.'
+  article_deleted:  'Стаття видалена.'
+#university
+  new_university:   'Новий навчальний заклад'
+  university:   'Навчальний заклад'
+  university_created: 'Створено новий навчальний заклад'
+  create_responsible_person: 'Створити відповідальну особу?'
+  responsible_person: 'Відповідальна особа'
+  responsible_person_created: 'Відповідальна особа створена'
+  responsible_person_not_created: 'Не вдалося створити відповідальну особу.'
+  university_updated: 'Дані навчального закладу оновлені.'
+  all_universities: 'Список навчальних закладів'
+  my_university: 'Мій навчальний заклад'
+  edit_university: 'Редагувати навчальний заклад'
+  select_university: 'Виберіть навчальний заклад'
+  chancellor:       'Ректор'
+# повідомлення
+  all_notifications: 'Всі повідомлення'
+  notifications: 'Повідомлення'
+  notification_deleted: 'Повідомлення видалено'
+  notification_not_deleted: 'не вдалося видалити повідомлення'
+#підрозділ
+  list_of_scientists: "Список науковців"
+  scientists_count: "Кількість науковців"
+  list_of_scientists_of: "Список науковців, що працюють у відділі «%{department}»"
+  list_of_scientists_of_scope: "Список науковців, що працюють по напрямку «%{scope_name}»"
+  list_of_departments: "Список підрозділів"
+  department_updated:   'Підрозділ оновлено'
+  edit_department:      'Редагувати підрозділ'
+  new_department_for:   'Додати новий підрозділ в %{university}'
+  department_created:  'Створено новий підрозділ'
+  department:  'Підрозділ'
+  new_department:  'Новий підрозділ'
+  department_deleted:  'Підрозділ видалено'
+  department_not_deleted:  'Не вдалося видалити підрозділ'
+  no_departments:     'Підрозділи не створені'
+#науковці
+  create_scientist:     'Додати науковця'
+  scientist_deleted:   'Науковця видалено'
+  scientist_not_deleted:   'Не вдалося видалити науковця'
+  new_scientist:     'Новий науковець'
+  one_per_line:     'Кожен новий варіант з нового рядка'
+  scientist_created: 'Додано нового науковця'
+  scientist_updated: 'Дані науковця оновлено'
+  first_name_en:    "Ім'я англійською"
+  middle_name_en:   "По батькові англійською"
+  second_name_en:   "Прізвище англійською"
+  format_dmY:       'У форматі дд.мм.рік, наприклад 21.12.1982'
+  scientist_scopes:       'Напрямки в яких працює науковець'
+  hold_ctrl_for_multiple:  'Утримуйте клавішу Ctrl для вибору кількох варіантів'
+#галузі науки
+  all_scopes:         'Всі галузі'
+  edit_scope:         'Редагувати галузь'
+  new_scope:         'Нова галузь'
+  scope_updated:      'Галузь оновлено'
+  scope_deleted:      'Галузь видалено'
+  scope_created:      'Створено нову галузь'
+  scope_not_deleted:  'Не вдалося видалити галузь'
+#admin
+  users: 'Користувачі'
+  universities: 'Університети'
+  scientists: 'Науковці'
+  scopes: 'Галузі науки'
+#will_paginate
+  will_paginate:
+    previous_label: 'Назад'
+    next_label:     'Вперед'
+    page_gap:     '...'
+    page_entries_info:
+      single_page_html: ''
+    page_entries_info:
+      single_page:
+        zero:  "Не знайдено жодного запису"
+        one:   "Показано 1 "
+        other: "Показано всі %{count}"
+      single_page_html:
+        zero:  "Не знайдено жодного запису"
+        one:   "Показано <b>1</b> "
+        other: "Показано <b>всі&nbsp;%{count}</b>"
+
+      multi_page: "Показано  %{from} - %{to} з %{count} всього"
+      multi_page_html: "Показано <b>%{from}&nbsp;-&nbsp;%{to}</b> з <b>%{count}</b> всього"
+#uapluralize
+  no: 'Немає'
+  error: 'помилка'
+  error_2: 'помилки'
+  error_3: 'помилок'
+#activerecord
+  activerecord:
+    errors:
+      models:
+        article:
+          attributes:
+            content:			
+              *errors
+            title:
+              *errors
+        user:
+          attributes:
+            username:      
+              *errors
+            post:      
+              *errors
+            email:
+              *errors
+            name:
+              blank:      'не може бути пустим'
+              invalid:    'неправильного формату, необхідно ПІБ (Іванов Іван Іванович)'
+            scan:
+              *errors
+            password:
+              *errors
+            current_password:
+              *errors
+            password_confirmation:
+              *errors
+        university:
+          attributes:
+            name:
+              *errors
+            chancellor:
+              *errors
+            logo:
+              *errors
+        department:
+          attributes:
+            name:
+              *errors
+        scope:
+          attributes:
+            code:
+              *errors
+            name:
+              *errors
+            branch:
+              *errors
+        scientist:
+          attributes:
+            first_name_uk: 
+              *errors
+            middle_name_uk:
+              *errors
+            second_name_uk:
+              *errors
+            first_name_ru: 
+              *errors
+            middle_name_ru:
+              *errors
+            second_name_ru:
+              *errors
+            born_at:       
+              *errors
+            post:          
+              *errors
+            science_degree:
+              *errors
+            academic_title:
+              *errors
+
+    models:
+      article:    'Стаття'
+      user:       'Користувач'
+      university: 'Університет'
+    attributes:
+      article:
+        title:		'Заголовок'
+        content:	'Вміст'
+        url:		  'Шлях'
+      user:
+        username:               'Логін'
+        name:                   "Прізвище, ім'я, по батькові"
+        post:                   'Посада'
+        email:                  'Електронна пошта'
+        scan:                   'Відсканований документ'
+        password:               'Пароль'
+        current_password:       'Поточний пароль'
+        password_confirmation:  'Підтвердження паролю'
+      university:
+        name:                   'Назва'
+        chancellor:             'Ректор'
+        logo:       'Герб'
+      scope:
+        code:             'Шифр'
+        name:             'Галузь науки, група спеціальностей, спеціальність'
+        branch:           'Галузь науки, за якою присуджується науковий ступінь'
+      scientist:
+        first_name_uk:      "Ім'я українською"
+        middle_name_uk:      "По батькові українською"
+        second_name_uk:      "Прізвище українською"
+        first_name_ru:      "Ім'я російською"
+        middle_name_ru:      "По батькові російською"
+        second_name_ru:      "Прізвище російською"
+        first_name_en:    "Ім'я англійською"
+        middle_name_en:   "По батькові англійською"
+        second_name_en:   "Прізвище англійською"
+        born_at:            'Дата народження'
+        post:               'Посада'
+        science_degree:      'Науковий ступінь'
+        academic_title:      'Вчене звання'
+        scientist_scopes:       'Напрямки в яких працює науковець'
+        selected_scopes:       'Напрямки в яких працює науковець'
+        no_scopes: 'Не вибрано жодного напрямку'
+        himself: 'Цей'
+      department:
+        name:       'Назва'
+
