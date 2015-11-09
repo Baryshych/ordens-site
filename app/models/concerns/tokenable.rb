@@ -15,4 +15,9 @@ module Tokenable
                        .map{ |w| stemmer.stem(corrector.correct(w)) }
                        .sort.join(' ')
   end
+
+  def find_similar
+    token = token.present? ? token : create_token
+    self.class.where(token: token).first
+  end
 end

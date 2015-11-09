@@ -19,5 +19,6 @@
 //= require angular-route
 //= require_tree ./angular
 //= require app
+//= require plugins/sifter
 //= require_tree .
 //= require init

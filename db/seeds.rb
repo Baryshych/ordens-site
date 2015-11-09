@@ -33,11 +33,10 @@ def find_post(old_id)
 end
 
 def find_nationality(old_id)
-  return if old_id.blank?
-  @nats ||= JSON.parse(File.read(Rails.root.to_s + '/scripts/dumps/nationalities.json'))
-  nat = @nats.find{ |x| x['id'] == old_id.to_s }
-  return unless nat
-  nat['text'].blank? ? nil : nat['text']
+  case old_id.to_i
+  when 3 then 'українець'
+  when 4 then 'українка'
+  end
 end
 
 @user = User.first

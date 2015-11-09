@@ -11,6 +11,13 @@ gem 'devise'
 gem 'slim'
 gem 'puma'
 gem 'angularjs-rails'
+gem 'active_model_serializers'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+
+# search
+gem 'sunspot_rails'
+gem 'sunspot_solr'
 
 group :development, :test do
   gem 'pry'

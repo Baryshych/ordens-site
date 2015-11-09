@@ -1,6 +1,9 @@
 .w100 {
   width: 100%;
 }
+.w50 {
+  width: 50%;
+}
 
 body,
 h1,
@@ -14,4 +17,10 @@ h6,
 .h3,
 .h4 {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+.white {
+  background: #fff;
+}
+.modal-dialog {
+  margin: 120px auto;
 }

@@ -1,0 +1,42 @@
+#searchbox
+  .panel
+    .row
+      / .col-xs-6
+      /   label.btn-primary.btn-xs onClick="$(this).next().next().click()" Сортувати за:
+      /   select name="mySelect" ng-model="selectedOption" ng-options=("option.name for option in orderOptions track by option.value") data-dynamic-opts=""
+      .col-xs-6
+        .searchbox
+          input.form-control.w100 ng-model="search" placeholder="Пошук" type="text" /
+          i.fa.fa-search
+#peoplelist
+  .pad
+    table.table.table-striped.table-bordered
+      tbody
+        tr
+          th ПІБ
+          th Посада
+          th Місце роботи
+          th.w50 Список нагород
+          th Оції
+        tr dir-paginate="profile in profiles | itemsPerPage: 30" total-items="totalEntries" current-page="currentPage"
+          td
+            a.view-link href="" ui-sref="profileEdit({id: profile.id})"
+              | {{profile.full_name}}
+          td
+            p ng-bind="profile.post"
+          td
+            p ng-bind="profile.workplace_title"
+          td
+            p ng-repeat="award in profile.awards"
+              | {{ award }}
+          td
+            button.btn.btn-warning.ntb-xs.bsmall [
+              ui-sref="profileEdit({id: profile.id})"
+              style="width:100px;"]
+              | Редагувати
+            button.btn.btn-danger.ntb-xs.bsmall [
+              ng-click="destroy(profile)"
+              style="width:100px;"]
+              | Видалити
+    .text-center
+      dir-pagination-controls boundary-links="true" on-page-change="getPage(newPageNumber)" template-url=asset_path('shared/pagination')

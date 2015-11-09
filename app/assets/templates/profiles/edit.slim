@@ -1,0 +1,191 @@
+#peopleaddform.profile-form
+  form 
+    #people-data.row
+      .people.col-xs-4
+        h3 Основні дані
+        div
+          table
+            tbody
+              tr
+                td Прізвище
+                td
+                  input.form-control ng-model="profile.last_name" size="15" type="text"
+              tr
+                td Ім'я
+                td
+                  input.form-control ng-model="profile.first_name" size="15" type="text"
+              tr
+                td По-батькові
+                td
+                  input.form-control ng-model="profile.middle_name" size="15" type="text"
+              tr
+                td Дата народження
+                td
+                  .inline-block
+                    input.hasDatepick.form-control [
+                      size="15"
+                      ng-click="birthPicker = !birthPicker"
+                      ng-model="profile.born_at"
+                      uib-datepicker-popup="dd.MM.yyyy"
+                      is-open="birthPicker"
+                      datepicker-options="dateOptions"
+                      show-weeks="false"
+                      show-button-bar="false"
+                      close-on-date-selection="false"]
+              tr
+                td Стать
+                td.radio.radio-primary
+                  label
+                    input ng-model="profile.male" type="radio" ng-value="true"
+                    | Чоловіча
+                  label
+                    input ng-model="profile.male" type="radio" ng-value="false"
+                      | Жіноча
+              tr
+                td
+                  button.btn.btn-success ng-click="save()" Зберегти
+                td
+        br/
+        br/
+        br/
+        br/
+        .service-info ng-show="profile.id"
+          h4 Службова інформація
+          table.table.table-bordered
+            tbody
+              tr
+                td Анкету створив:
+                td
+                  span.creator ng-bind="profile.creator_name"
+              tr
+                td Дата створення:
+                td
+                  span.created ng-bind="profile.formatted_created_at"
+              tr
+                td Дата редагування:
+                td
+                  span.edited ng-bind="profile.formatted_updated_at"
+      .people.col-xs-8
+        h3 Персональні дані
+        div
+          table
+            tbody
+              tr
+                td.name Місце роботи
+                td.input
+                  selectize.form-control config='scienceDegreesConfig' options='workplaces' ng-model="profile.workplace_id"
+                  span.btn.btn-primary.btn-xs.add-item.btn-flat.btn-raised ng-click="addEditWorkplace()" Додати нове
+              tr
+                td.name Посада
+                td.input
+                  input.form-control ng-model="profile.post" type="text"
+              tr
+                td.name Національність
+                td.input
+                  input.form-control ng-model="profile.nationality" role="textbox" size="60"
+              tr
+                td.name Партійність
+                td.input
+                  input.form-control ng-model="profile.party_membership" size="60" type="text"
+              tr
+                td.name Освіта
+                td.input
+                  textarea.form-control ng-model="profile.education" rows="5" type="text"
+              tr
+                td.name Науковий ступінь
+                td.input
+                  selectize config='scienceDegreesConfig' options='scienceDegrees' ng-model="profile.science_degree_id"
+                  span.btn.btn-primary.btn-xs.add-item.btn-flat.btn-raised ng-click="addEditScienceDegree()" Додати новий
+
+              tr
+                td.name Вчене звання
+                td.input
+                  selectize config='scienceDegreesConfig' options='educationDegrees' ng-model="profile.education_degree_id"
+                  span.btn.btn-primary.btn-xs.add-item.btn-flat.btn-raised ng-click="addEditEducationDegree()" Додати нове
+
+              tr
+                td.name Спеціальне звання
+                td.input
+                  input.form-control ng-model="profile.special_degree" size="60" type="text"
+              tr
+                td.name Домашня адреса
+                td.input
+                  input.form-control ng-model="profile.home_adress" size="60" type="text"
+              tr
+                td.name Телефон
+                td.input
+                  input.form-control ng-model="profile.home_phone" size="60" type="text"
+              tr
+                td.name Робоча адреса
+                td.input
+                  input.form-control [
+                    disabled="true"
+                    type="text"
+                    value="{{ profile.workplace_address }}"
+                    placeholder="Адреса не вказана. Виберіть або відредагуйте місце роботи."
+                    title="Виберіть або відредагуйте місце роботи щоб змінити адресу."
+                  ]
+              tr
+                td.name Робочий телефон
+                td.input
+                  input.form-control ng-model="profile.work_phone" size="60" type="text"
+              tr
+                td.name Загальний стаж
+                td.input.works-o-service
+                  input.form-control ng-model="profile.years_worked_total" type="number"
+                  span на поточному місці
+                  input.form-control ng-model="profile.years_worked_on_current_place" type="number"
+              tr
+                td.name Характеристика
+                td.input
+                  textarea.form-control ng-model="profile.characteristic" rows="5"
+              tr
+                td.name Наукові праці, проф. досягнення
+                td.input
+                  textarea.form-control ng-model="profile.archievements" rows="5"
+  .clearfix
+  #orden-data ng-show="profile.id"
+    .ordens-table
+      div
+        h3 Список нагород
+        table#ordenlist.table.table-striped.table-bordered
+          tbody
+            tr
+              th Нагорода
+              th № протоколу
+              th Дата засідання
+              th Статус розгляду
+              th Суб'єкт клопотання
+              th Дата отримання клопотання
+              th Раєстр. №
+              th Якість документів
+              th Підстава для отримання
+              th Нагороду отримав
+            tr ng-repeat="award in profile.awards"
+              td.awardtype
+                | {{ award.title }}
+                br/
+                button.btn.btn-xs.btn-info ui-sref="awardEdit({profileId: profile.id, id: award.id})" Редагувати
+                button.btn.btn-xs.btn-danger Видалити
+              td.protocolnumber 
+                | {{ award.comission_protocol_number }}
+              td.comiteedate 
+                | {{ award.comission_date }}
+              td.status 
+                | {{ award.status }}
+              td.subjectpetition 
+                | {{ award.petition_initiator_title }}
+              td.petitiondate 
+                | {{ award.petition_got_at }}
+              td.rpnum 
+                | {{ award.registry_petition_number }}
+              td.docquality 
+                | {{ award.document_quality_description }}
+              td.awardcause 
+                | {{ award.award_cause }}
+              td.awardgot 
+                | {{ award.result }}
+            tr#3
+              td.awardtype
+                button#3.add.btn.btn-success ui-sref="awardNew({profileId: profile.id})" Додати
+              td colspan="9"

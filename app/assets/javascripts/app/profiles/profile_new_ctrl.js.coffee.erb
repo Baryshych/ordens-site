@@ -1,0 +1,122 @@
+module.controller 'ProfileNew', [
+  '$scope'
+  '$state'
+  'Profile'
+  '$stateParams'
+  'ScienceDegree'
+  'EducationDegree'
+  'Workplace'
+  '$uibModal'
+  ($scope, $state, Profile, $stateParams, ScienceDegree, EducationDegree, Workplace, $uibModal) ->
+
+    $scope.profile = Profile.$build()
+
+    $scope.save =()->
+      $scope.profile.$save().$then(
+        (result)->
+          $scope.profile.$pk = result.$response.data['id']
+          toastr['success']('Анкету успішно створено.')
+        (result)->
+          toastr['error']('Помилка!')
+      )
+
+    $scope.addEditWorkplace =()->
+      modal = $uibModal.open(
+        templateUrl: '<%= asset_path("workplaces/edit") %>',
+        controller: 'WorkplaceCtrl',
+        resolve: {
+          workplace_id: ->
+            # $scope.profile.workplace_id
+        }
+      )
+      modal.result.then((workplace_id)->
+        Workplace.$search().$then((result)->
+          $scope.workplaces = result
+          if $scope.profile.workplace_id == workplace_id
+            refreshWorkAdress(workplace_id)
+          else
+            $scope.profile.workplace_id = workplace_id
+            $scope.profile.$save() if $scope.profile.id
+        )
+      )
+
+    $scope.addEditScienceDegree =()->
+      modal = $uibModal.open(
+        templateUrl: '<%= asset_path("science_degrees/edit") %>',
+        controller: 'ScienceDegreeCtrl',
+        resolve: {
+          science_degree_id: ->
+            # $scope.profile.science_degree_id
+        }
+      )
+      modal.result.then((science_degree_id)->
+        ScienceDegree.$search().$then((result)->
+          $scope.scienceDegrees = result
+          if $scope.profile.science_degree_id != science_degree_id
+            $scope.profile.science_degree_id = science_degree_id
+            $scope.profile.$save() if $scope.profile.id
+        )
+      )
+
+    $scope.addEditEducationDegree =()->
+      modal = $uibModal.open(
+        templateUrl: '<%= asset_path("education_degrees/edit") %>',
+        controller: 'EducationDegreeCtrl',
+        resolve: {
+          education_degree_id: ->
+            # $scope.profile.education_degree_id
+        }
+      )
+      modal.result.then((education_degree_id)->
+        EducationDegree.$search().$then((result)->
+          $scope.educationDegrees = result
+          if $scope.profile.education_degree_id != education_degree_id
+            $scope.profile.education_degree_id = education_degree_id
+            $scope.profile.$save() if $scope.profile.id
+        )
+      )
+
+    $scope.dateOptions = {
+      startingDay: 1
+    }
+
+ 
+    $scope.scienceDegrees = ScienceDegree.$search()
+    $scope.educationDegrees = EducationDegree.$search()
+    $scope.workplaces = Workplace.$search()
+
+    $scope.scienceDegreesConfig = {
+      create: false,
+      valueField: 'id',
+      labelField: 'title',
+      searchField: 'title',
+      delimiter: '|',
+      placeholder: 'Виберіть значення з списку (введіть текст для пошуку)',
+      maxItems: 1
+    }
+
+    $scope.workplaceAddressesConfig = {
+      create: false,
+      valueField: 'id',
+      labelField: 'address',
+      placeholder: 'Виберіть місце роботи зі списку вище',
+      maxItems: 1
+    }
+
+    $scope.$watch('profile.workplace_id'
+      (workplace_id, old_workplace_id)->
+        if workplace_id && workplace_id != old_workplace_id
+          refreshWorkAdress(parseInt(workplace_id))
+    )
+
+    refreshWorkAdress = (workplace_id)->
+      workplace = $.grep($scope.workplaces, (place)-> 
+        return place.id == workplace_id
+      )
+      if workplace[0]
+        $scope.profile.workplace_address = workplace[0].address
+      else
+        $scope.profile.workplace_address = 'Адреса не вказана.'
+
+]
+

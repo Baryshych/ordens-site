@@ -1,0 +1,39 @@
+div
+  .modal-header
+    button.close ng-click="cancel()"
+      span &times;
+
+    h3.modal-title 
+     | {{ modalTitle }}
+     |  місце роботи
+  .modal-body
+    br
+    .form-control-wrapper
+      .control-label Повна назва
+      br
+      textarea.form-control.empty rows="5" ng-model="workplace.title"
+    .form-control-wrapper
+      .control-label Адреса
+      br
+      textarea.form-control.empty rows="3" ng-model="workplace.address"
+    br
+    .bs-component ng-show="warning"
+      .alert.alert-warning
+        h4 Схоже місце роботи вже існує:
+        ul
+          li ng-bind="existingItem.title"
+
+  .modal-footer
+    div ng-hide="warning"
+      button.btn.btn-primary.btn-raised ng-click="save()" type="button"
+        | Зберегти
+      button.btn.btn-default.btn-raised ng-click="cancel()" type="button"
+        | Відмінити
+    div ng-show="warning"
+      button.btn.btn-warning.btn-raised ng-click="forceSave()" type="button"
+        | Все одно додати
+      button.btn.btn-primary.btn-raised ng-click="useExisting()" type="button"
+        | Використати існуюче
+      button.btn.btn-default.btn-raised ng-click="cancel()" type="button"
+        | Відмінити
+

@@ -1,0 +1,62 @@
+.add-orden.maincontent hidden="hidden" 
+  .inner style=("min-height: 986px;") 
+    h3 Інформація про нагороду
+    table
+      tbody
+        tr
+          td Нагорода (назва)
+          td
+            input.wide.ui-autocomplete-input aria-autocomplete="list" aria-haspopup="true" autocomplete="off" name="awardtype" role="textbox" size="100" type="text" /
+        tr
+          td № протоколу
+          td
+            input name="protocolnumber" size="100" type="text" /
+        tr
+          td Дата засідання
+          td
+            input.hasDatepick name="comiteedate" size="100" type="text" /
+        tr
+          td Статус розгляду
+          td
+            select name="status" 
+              option selected="selected" value="0"  очікує розгляду
+              option value="1"  підтримано
+              option value="2"  відхилено
+              option value="3"  підтримано як виняток
+              option value="4"  знято з розгляду
+        tr
+          td Суб'єкт клопотання
+          td
+            input.wide.ui-autocomplete-input aria-autocomplete="list" aria-haspopup="true" autocomplete="off" name="subjectpetition" role="textbox" size="100" type="text" /
+        tr
+          td Дата отримання клопотання
+          td
+            input.hasDatepick name="petitiondate" size="100" type="text" /
+        tr
+          td Раєстраційний №
+          td
+            input name="rpnum" size="100" type="text" /
+        tr
+          td Якість документів
+          td
+            input.wide.ui-autocomplete-input aria-autocomplete="list" aria-haspopup="true" autocomplete="off" name="docquality" role="textbox" size="100" type="text" /
+        tr
+          td Підстава для отримання
+          td
+            textarea.wide name="awardcause" 
+        tr.awardgot
+          td Нагороду отримав
+          td
+            input checked="checked" name="awardgot" type="radio" value="0" >/
+            | Невідомо
+            br/
+            input name="awardgot" type="radio" value="1" /
+            | Отримав
+            br/
+            input name="awardgot" type="radio" value="2" /
+            | отримав
+        tr
+          td
+            button.submit.btn.btn-primary Підтвердити
+            button.dismiss.btn Відмінити
+          td

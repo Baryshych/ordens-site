@@ -1,5 +1,5 @@
   * Repeat database structure *
-    □ Generate models
+    ✔ Generate models @done (20.10.15 18:23)
       ✔ award_type @done (19.10.15 23:58)
       ✔ award_category @done (19.10.15 23:58)
       ✔ document_quality @done (19.10.15 23:59)
@@ -7,24 +7,26 @@
       ✔ science_degree @done (19.10.15 23:59)
       ✔ petition_initiator @done (20.10.15 00:00)
       ✔ workplace @done (20.10.15 00:01)
-    □ Add validations and relations
-    □ Create database import script
+    ✔ Add validations and relations @done (20.10.15 18:22)
+    ✔ Create database import script @done (20.10.15 18:22)
   * Build interface *
-    □ Add bootstrap 3
-    □ Add bootstrap theme
-    □ Add inspinia-styled toastr
-    □ Add angular
-      □ bootstrap directives
-      □ angular will paginate
-      □ ui-router
-        □ dasboard
-        □ profiles
+    ✔ Add bootstrap 3 @done (20.10.15 18:22)
+    ✔ Add bootstrap theme @done (20.10.15 18:23)
+    ✔ Add inspinia-styled toastr @done (20.10.15 18:23)
+    ✔ Add angular @done (20.10.15 18:23)
+      ✔ bootstrap directives @done (20.10.15 18:23)
+      ✔ angular will paginate @done (20.10.15 18:23)
+      ✔ ui-router @done (20.10.15 18:23)
+        ✔ dasboard @done (20.10.15 18:23)
+        ✔ profiles @done (20.10.15 18:23)
         □ edit profile
         □ edit award
-      □ restmod
-        □ profile
+      ✔ restmod @done (20.10.15 18:23)
+        ✔ profile @done (20.10.15 18:23)
         □ award
     □ List profiles page
     □ Add/edit profile
+    □ Fix seed.rb script (incorrect dates). See mon/app/core.php:179 for correct parsing.
+    □ Incorrect dates in database... look for solution.
 
 

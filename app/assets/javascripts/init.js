@@ -1,5 +1,6 @@
 jQuery(document).ready(function($){
   $.material.init();
+  
   toastr.options = {
     "closeButton": true,
     "debug": false,
@@ -17,3 +18,4 @@ jQuery(document).ready(function($){
     "hideMethod": "fadeOut"
   }
 });
+

@@ -1,0 +1,88 @@
+.row.profile-form.profile-award-form
+  .col-xs-12
+    h3.text-center ng-bind="title"
+    br
+    table.w100
+      tbody
+        tr
+          td.col-xs-3 Тип нагороди
+          td.col-xs-9
+            selectize.form-control config='awardTypesConfig' options='awardTypes' ng-model="award.award_type_id"
+            span.btn.btn-primary.btn-xs.add-item.btn-flat.btn-raised ng-click="addAwardType()" Додати новий
+        tr
+          td.col-xs-3 № протоколу
+          td.col-xs-9
+            input.form-control ng-model="award.comission_protocol_number" type="text"
+        tr
+          td.col-xs-3 Дата засідання
+          td.col-xs-9
+            .inline-block
+              input.hasDatepick.form-control [
+                size="25"
+                ng-click="comissionDatePicker = !comissionDatePicker"
+                ng-model="award.comission_date"
+                uib-datepicker-popup="dd.MM.yyyy"
+                is-open="comissionDatePicker"
+                datepicker-options="dateOptions"
+                show-weeks="false"
+                show-button-bar="false"
+                close-on-date-selection="false"]
+        tr
+          td.col-xs-3 Статус розгляду
+          td.col-xs-9
+            selectize.form-control config='awardStatusesConfig' options='awardStatuses' ng-model="award.status"
+        tr
+          td.col-xs-3 Суб'єкт клопотання
+          td.col-xs-9
+            selectize.form-control config='awardTypesConfig' options='petitionInitiators' ng-model="award.petition_initiator_id"
+            span.btn.btn-primary.btn-xs.add-item.btn-flat.btn-raised ng-click="addPetitionInitiator()" Додати нове значення
+        tr
+          td.col-xs-3 Дата отримання клопотання
+          td.col-xs-9
+            .inline-block
+              input.hasDatepick.form-control [
+                size="25"
+                ng-click="petitionGotDatePicker = !petitionGotDatePicker"
+                ng-model="award.petition_got_at"
+                uib-datepicker-popup="dd.MM.yyyy"
+                is-open="petitionGotDatePicker"
+                datepicker-options="dateOptions"
+                show-weeks="false"
+                show-button-bar="false"
+                close-on-date-selection="false"]
+        tr
+          td.col-xs-3 Раєстраційний №
+          td.col-xs-9
+            input.form-control ng-model="award.registry_petition_number" type="text"
+        tr
+          td.col-xs-3 Якість документів
+          td.col-xs-9
+            selectize.form-control config='documentQualitiesConfig' options='documentQualities' ng-model="award.document_quality_id"
+            span.btn.btn-primary.btn-xs.add-item.btn-flat.btn-raised ng-click="addDocumentQuality()" Додати нове значення
+        tr
+          td.col-xs-3 Підстава для отримання
+          td.col-xs-9
+            textarea.form-control rows="1" ng-model="award.award_cause" 
+        tr.awardgot
+          td.col-xs-3 Нагороду отримав
+          td.col-xs-9.radio
+            label.radio-defaut
+              input ng-model="award.result" type="radio" value="Невідомо"
+              | Невідомо
+            label.radio-primary
+              input ng-model="award.result" type="radio" value="Отримав"
+              | Отримав
+            label.radio-warning
+              input ng-model="award.result" type="radio" value="Не отримав"
+              | Не отримав
+    br
+    .col-xs-12
+      button.btn.btn-primary.btn-raised ng-click="save()" type="button"
+        | Зберегти
+      | &nbsp;
+      button.btn.btn-default.btn-raised ng-click="cancel()" type="button"
+        | Відмінити
+      .add-item ng-show="award.id"
+        button.btn.btn-danger.btn-raised.btn-flat ng-click="destroy()" type="button"
+          | Видалити
+

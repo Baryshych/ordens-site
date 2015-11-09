@@ -1,0 +1,14 @@
+module.config(['$stateProvider',
+  function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('awardNew', {
+        url: '/profiles/:profileId/awards/new',
+        templateUrl: "<%= asset_url 'awards/edit' %>",
+        controller: 'AwardCtrl'
+      })
+      .state('awardEdit', {
+        url: '/profiles/:profileId/awards/:id',
+        templateUrl: "<%= asset_url 'awards/edit' %>",
+        controller: 'AwardCtrl'
+      })
+}]);

@@ -1,0 +1,19 @@
+module.config(['$stateProvider',
+  function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('profiles', {
+        url: '/profiles?page',
+        templateUrl: "<%= asset_url 'profiles/index' %>",
+        controller: 'ProfilesCtrl'
+      })
+      .state('profileNew', {
+        url: '/profiles/new',
+        templateUrl: "<%= asset_url 'profiles/edit' %>",
+        controller: 'ProfileNew'
+      })
+      .state('profileEdit', {
+        url: '/profiles/:id',
+        templateUrl: "<%= asset_url 'profiles/edit' %>",
+        controller: 'ProfileEdit'
+      })
+}]);
