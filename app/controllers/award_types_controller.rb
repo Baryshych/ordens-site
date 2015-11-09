@@ -10,6 +10,10 @@ class AwardTypesController < ApplicationController
 
   def create
     award_type = AwardType.new(award_type_params)
+    if !params[:force_save] && existing = award_type.find_similar
+      render json: { warning: true, existing_item: existing }
+      return
+    end
     award_type.user_id = current_user.id
     if award_type.save
       render json: { id: award_type.id }

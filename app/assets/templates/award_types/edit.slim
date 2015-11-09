@@ -1,0 +1,32 @@
+div
+  .modal-header
+    button.close ng-click="cancel()"
+      span &times;
+
+    h3.modal-title 
+     | {{ modalTitle }}
+  .modal-body
+    br
+    .form-control-wrapper
+      .control-label Назва
+      br
+      input.form-control autofocus="true" ng-model="item.title"
+    br
+    .bs-component ng-show="warning"
+      .alert.alert-warning
+        h4 Тип нагороди вже існує:
+        ul
+          li ng-bind="existingItem.title"
+  .modal-footer 
+    div ng-hide="warning"
+      button.btn.btn-primary.btn-raised ng-click="save()" type="button"
+        | Зберегти
+      button.btn.btn-default.btn-raised ng-click="cancel()" type="button"
+        | Відмінити
+    div ng-show="warning"
+      button.btn.btn-warning.btn-raised ng-click="forceSave()" type="button"
+        | Все одно додати
+      button.btn.btn-primary.btn-raised ng-click="useExisting()" type="button"
+        | Використати існуючий
+      button.btn.btn-default.btn-raised ng-click="cancel()" type="button"
+        | Відмінити

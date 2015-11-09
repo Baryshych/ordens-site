@@ -10,6 +10,10 @@ class PetitionInitiatorsController < ApplicationController
 
   def create
     petition_initiator = PetitionInitiator.new(petition_initiator_params)
+    if !params[:force_save] && existing = petition_initiator.find_similar
+      render json: { warning: true, existing_item: existing }
+      return
+    end
     petition_initiator.user_id = current_user.id
     if petition_initiator.save
       render json: { id: petition_initiator.id }

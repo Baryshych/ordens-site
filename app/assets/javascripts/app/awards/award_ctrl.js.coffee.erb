@@ -6,7 +6,8 @@ module.controller 'AwardCtrl', [
   'PetitionInitiator'
   'DocumentQuality'
   '$stateParams'
-  ($scope, $state, Award, AwardType, PetitionInitiator, DocumentQuality, $stateParams) ->
+  '$uibModal'
+  ($scope, $state, Award, AwardType, PetitionInitiator, DocumentQuality, $stateParams, $uibModal) ->
     if $stateParams.id
       $scope.title = "Редагувати нагороду"
       savedNotice = 'Дані нагороли оновлено'
@@ -40,6 +41,53 @@ module.controller 'AwardCtrl', [
           (result)->
             toastr['error']('Не вдалося видалити нагороду')
         )
+
+    $scope.addAwardType =()->
+      modal = $uibModal.open(
+        templateUrl: '<%= asset_path("award_types/edit") %>',
+        controller: 'AwardTypeCtrl',
+        resolve: {
+          awardTypeId: ->
+            # nothing, but required
+        }
+      )
+      modal.result.then((awardTypeId)->
+        AwardType.$search().$then((result)->
+          $scope.awardTypes = result
+          $scope.award.award_type_id = awardTypeId
+        )
+      )
+
+    $scope.addPetitionInitiator =()->
+      modal = $uibModal.open(
+        templateUrl: '<%= asset_path("petition_initiators/edit") %>',
+        controller: 'PetitionInitiatorCtrl',
+        resolve: {
+          petitionInitiatorId: ->
+            # nothing, but required
+        }
+      )
+      modal.result.then((petitionInitiatorId)->
+        PetitionInitiator.$search().$then((result)->
+          $scope.petitionInitiators = result
+          $scope.award.petition_initiator_id = petitionInitiatorId
+        )
+      )
+    $scope.addDocumentQuality =()->
+      modal = $uibModal.open(
+        templateUrl: '<%= asset_path("document_qualities/edit") %>',
+        controller: 'DocumentQualityCtrl',
+        resolve: {
+          documentQualityId: ->
+            # nothing, but required
+        }
+      )
+      modal.result.then((documentQualityId)->
+        DocumentQuality.$search().$then((result)->
+          $scope.documentQualities = result
+          $scope.award.document_quality_id = documentQualityId
+        )
+      )
 
     $scope.awardTypes = AwardType.$search()
     $scope.awardTypesConfig = {

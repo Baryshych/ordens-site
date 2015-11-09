@@ -10,6 +10,10 @@ class DocumentQualitiesController < ApplicationController
 
   def create
     document_quality = DocumentQuality.new(document_quality_params)
+    if !params[:force_save] && existing = document_quality.find_similar
+      render json: { warning: true, existing_item: existing }
+      return
+    end
     document_quality.user_id = current_user.id
     if document_quality.save
       render json: { id: document_quality.id }
@@ -30,6 +34,6 @@ class DocumentQualitiesController < ApplicationController
   private
 
   def document_quality_params
-    params.permit(:title)
+    params.permit(:description)
   end
 end
