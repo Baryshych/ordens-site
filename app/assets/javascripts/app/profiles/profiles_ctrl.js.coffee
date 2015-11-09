@@ -28,6 +28,10 @@ module.controller 'ProfilesCtrl', [
         toastr['success']('Анкету видалено')
         loadProfiles(queryParams)
 
+    $scope.getPage =(pageNumber)->
+      $scope.currentPage = pageNumber
+      $state.go('profiles', { page: pageNumber })
+
     $scope.$watch('search',
       (newSearch, oldSearch)->
         if oldSearch != newSearch

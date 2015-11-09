@@ -19,3 +19,8 @@ jQuery(document).ready(function($){
   }
 });
 
+paceOptions = {
+    ajax: {
+        trackMethods: ['GET', 'POST']
+    }
+};

@@ -1,6 +1,7 @@
 module.controller 'DashboardCtrl', [
   '$scope'
   '$state'
-  ($scope, $state) ->
-    console.log('All right!')
+  'Account'
+  ($scope, $state, Account) ->
+    $scope.currentUser = Account.$find('current')
 ]
