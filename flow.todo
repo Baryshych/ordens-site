@@ -19,14 +19,52 @@
       ✔ ui-router @done (20.10.15 18:23)
         ✔ dasboard @done (20.10.15 18:23)
         ✔ profiles @done (20.10.15 18:23)
-        □ edit profile
-        □ edit award
+        ✔ edit profile @done (13.11.15 11:01)
+        ✔ edit award @done (13.11.15 11:01)
       ✔ restmod @done (20.10.15 18:23)
         ✔ profile @done (20.10.15 18:23)
         □ award
-    □ List profiles page
-    □ Add/edit profile
+    ✔ List profiles page @done (13.11.15 11:01)
+    ✔ Add/edit profile @done (13.11.15 11:01)
     □ Fix seed.rb script (incorrect dates). See mon/app/core.php:179 for correct parsing.
     □ Incorrect dates in database... look for solution.
+  * User add / edit
+    □ List users
+    □ Add/edit modal
+    □ Edit permissions modal
+  * Users selector
+    □ List latest entries
+    □ Filters modal
+    □ Mass-edit options
+    □ Select buttons
+  * Report generator
+    □ xlsx generator
+    □ docx generator
+  * Guest users
+    □ Model
+    □ Registration + password recovery
+    □ List of records
+    □ Add /edit record
+  * Import documents
+    □ List records
+    □ Filters:
+      a) email
+      b) first/last names
+      c) date
+      d) status (imported/ not imported)
 
 
+
+
+
+1) Обмеження по символах для проф досягнень (1000 символів)
+2) не вибирати в звіт нагороди які не підтримано
+3) Характеристику - не треба
+
+
+
+
+
+
+
+  Відомий науковець з методики  навчання української мови та літератури. Є автором понад 30 наукових публікацій, близько сотні підручників та методичних і навчальних посібників з грифом МОН України, збірників тестових завдань для зовнішнього незалежного оцінювання; завдань ІІ і ІІІ етапів Всеукраїнської учнівської олімпіади з української мови та літератури, численних конкурсів учнівської творчості; підручників з української літератури як для носіїв мови, так і для національних меншин. Лауреат Всеукраїнського конкурсу ''Учитель року - 1996'', володар Міжнародної літ

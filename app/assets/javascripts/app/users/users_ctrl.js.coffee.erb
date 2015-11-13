@@ -1,0 +1,38 @@
+module.controller 'UsersCtrl', [
+  '$scope'
+  '$state'
+  'User'
+  '$stateParams'
+  '$uibModal'
+  'Filter'
+  ($scope, $state, User, $stateParams, $uibModal, Filter) ->
+
+    $scope.adminUsers = []
+    $scope.users = []
+    queryParams = {}
+
+    loadItems =(queryParams)->
+      User.$search(queryParams).$then(
+        (result)->
+          $scope.users = result
+      )
+    loadItems()
+
+    Filter.search($scope, queryParams, loadItems)
+
+    $scope.addEditUser =(userId)->
+      modal = $uibModal.open(
+        templateUrl: '<%= asset_path("users/edit") %>',
+        controller: 'UserCtrl',
+        resolve: {
+          userId: ->
+            userId
+        }
+      )
+      modal.result.then((userId)->
+        User.$search().$then((result)->
+          loadUsers()
+        )
+      )
+]
+

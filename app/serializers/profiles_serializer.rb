@@ -3,8 +3,9 @@ class ProfilesSerializer < ActiveModel::Serializer
              :awards
 
   def awards
+    $award_types ||= AwardType.select(:id, :title)
     object.awards.map do |aw|
-      title = aw.award_type.try(:title)
+      title = $award_types.find { |x| x.id == aw.award_type_id }.try(:title)
       if aw.comission_date.present?
         year = '(' + aw.comission_date.strftime('%Y') + ')'
       else

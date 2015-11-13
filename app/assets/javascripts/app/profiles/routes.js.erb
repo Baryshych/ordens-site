@@ -2,7 +2,7 @@ module.config(['$stateProvider',
   function($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('profiles', {
-        url: '/profiles?page',
+        url: '/profiles?page?search',
         templateUrl: "<%= asset_url 'profiles/index' %>",
         controller: 'ProfilesCtrl'
       })

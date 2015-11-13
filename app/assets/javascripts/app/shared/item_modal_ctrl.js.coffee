@@ -2,6 +2,9 @@ module.controller 'ItemModalCtrl', [
   '$scope'
   '$modalInstance'
   ($scope, $modalInstance) ->
+    savedNotice = "Збережено"
+    notSavedNotice = "Не вдалося зберегти, помилки:"
+    
     $scope.save =()->
       $scope.item.$save().$then(
         (result)->

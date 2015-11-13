@@ -4,7 +4,8 @@ module.controller 'ProfilesCtrl', [
   'Profile'
   '$stateParams'
   '$timeout'
-  ($scope, $state, Profile, $stateParams, $timeout) ->
+  'Filter'
+  ($scope, $state, Profile, $stateParams, $timeout, Filter) ->
 
     searchPromise = false
 
@@ -12,14 +13,17 @@ module.controller 'ProfilesCtrl', [
       $scope.currentPage = $stateParams.page
     else
       $scope.currentPage = 1
+    $scope.search = $stateParams.search if $stateParams.search
 
-    queryParams = { page: $scope.currentPage }
+    queryParams = { page: $scope.currentPage, search: $scope.search }
 
     loadProfiles =(queryParams)->
       Profile.$search(queryParams).$then (result) ->
         $scope.profiles = result
         $scope.perPage = result.$metadata["per_page"]
         $scope.totalEntries = result.$metadata["total_entries"]
+
+    Filter.search($scope, queryParams, loadProfiles)
 
     $scope.destroy =(profile)->
       conf = confirm('Ви точно хочете видалити анкету?')
@@ -30,21 +34,21 @@ module.controller 'ProfilesCtrl', [
 
     $scope.getPage =(pageNumber)->
       $scope.currentPage = pageNumber
-      $state.go('profiles', { page: pageNumber })
+      $state.go('profiles', { page: pageNumber, search: $scope.search })
 
-    $scope.$watch('search',
-      (newSearch, oldSearch)->
-        if oldSearch != newSearch
-          console.log('watch triggered')
-          $timeout.cancel(searchPromise) if searchPromise
-          searchPromise = $timeout(
-            ()->
-              queryParams['search'] = newSearch
-              loadProfiles(queryParams)
-              console.log('timeout ended')
-            2000
-          )
-    )
+    # $scope.$watch('search',
+    #   (newSearch, oldSearch)->
+    #     if oldSearch != newSearch
+    #       console.log('watch triggered')
+    #       $timeout.cancel(searchPromise) if searchPromise
+    #       searchPromise = $timeout(
+    #         ()->
+    #           queryParams['search'] = newSearch
+    #           loadProfiles(queryParams)
+    #           console.log('timeout ended')
+    #         2000
+    #       )
+    # )
 
     $scope.orderOptions = [
       { value: 'second_name ASC', name: 'алфавітом А-Я' },

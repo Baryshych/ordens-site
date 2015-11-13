@@ -1,0 +1,29 @@
+#searchbox
+  .panel
+    .row
+      .col-xs-6
+        .searchbox
+          input.form-control.w100 ng-model="search" placeholder="Пошук" type="text" /
+          i.fa.fa-search
+#peoplelist
+  .pad
+    h3 
+      | Користувачі адміністратори
+      button.btn.btn-success.btn-xs.f-right ng-click="addEditUser()" Додати користувача
+    table.table.table-striped.table-bordered
+      tbody
+        tr
+          th Email
+          th Ім’я
+          th Посада
+          th Телефон
+        tr ng-repeat="user in users"
+          td
+            p ng-bind="user.email"
+            button.btn.btn-primary.btn-xs.btn-raised ng-click="addEditUser(user.id)" Редагувати
+          td
+            p ng-bind="user.name"
+          td
+            p ng-bind="user.post"
+          td
+            p ng-bind="user.phone"

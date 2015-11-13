@@ -1,0 +1,40 @@
+div
+  .modal-header
+    button.close ng-click="cancel()"
+      span &times;
+    h3.modal-title 
+     | {{ modalTitle }}
+    br
+  .modal-body
+    form.form-horizontal
+      .form-group
+        label.col-xs-2.control-label Email
+        .col-xs-10
+          input.form-control ng-model="item.email" type="email"
+      .form-group
+        label.col-xs-2.control-label Ім’я
+        .col-xs-10
+          input.form-control ng-model="item.name" type="text"
+      .form-group
+        label.col-xs-2.control-label Посада
+        .col-xs-10
+          input.form-control ng-model="item.post" type="text"
+      .form-group
+        label.col-xs-2.control-label Телефон
+        .col-xs-10
+          input.form-control ng-model="item.phone" type="text"
+      .form-group.has_warning
+        label.col-xs-2.control-label Пароль
+        .col-xs-10
+          input.form-control ng-show="user.id" ng-model="item.password" type="text" placeholder="Залиште пустим якщо не бажаєте змінювати"
+          input.form-control ng-hide="user.id" ng-model="item.password" type="text"
+      // .form-group
+      //   label.col-xs-2.control-label Місце роботи
+      //   .col-xs-10
+      //     input ng-model="user.petition_initiator_id" type="text"
+    br
+  .modal-footer 
+    button.btn.btn-primary.btn-raised ng-click="save()" type="button"
+      | Зберегти
+    button.btn.btn-default.btn-raised ng-click="cancel()" type="button"
+      | Відмінити

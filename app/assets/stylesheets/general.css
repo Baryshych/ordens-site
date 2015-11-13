@@ -24,3 +24,6 @@ h6,
 .modal-dialog {
   margin: 120px auto;
 }
+.f-right {
+  float: right;
+}

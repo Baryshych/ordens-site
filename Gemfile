@@ -16,8 +16,7 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
 # search
-gem 'sunspot_rails'
-gem 'sunspot_solr'
+gem 'pg_search'
 
 group :development, :test do
   gem 'pry'
