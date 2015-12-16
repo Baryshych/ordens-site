@@ -6,13 +6,10 @@ class ProfilesController < ApplicationController
     profiles = Profile.includes(:user, :workplace, :science_degree,
                                 :education_degree, :awards).newest
     profiles = profiles.search(params[:search]) if params[:search].present?
-                        
-    render json: profiles.paginate(page: params[:page]),
-                 meta: {
-                         total_entries: profiles.count,
-                         per_page: WillPaginate.per_page
-                        },
-                 each_serializer: ProfilesSerializer
+    per_page = params[:per_page] || WillPaginate.per_page
+    render json: profiles.paginate(page: params[:page], per_page: per_page),
+           meta: { total_entries: profiles.count, per_page: per_page },
+           each_serializer: ProfilesSerializer
   end
 
   def show

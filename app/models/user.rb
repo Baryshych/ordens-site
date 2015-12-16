@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   validates :email, :name, :post, :phone, length: { maximum: 255 }
   validates :email, presence: true
-  validates :password, presence: true, on: :create
+  validates :password, presence: true, length: { minimum: 8 }, on: :create
 
   serialize :permissions
 

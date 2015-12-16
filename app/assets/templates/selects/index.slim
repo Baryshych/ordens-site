@@ -1,0 +1,49 @@
+.selects
+  #searchbox
+    .panel
+      .row
+        .col-xs-12
+          button.btn.btn-primary Задати фільтри
+          button.btn.btn-primary Позначити всі
+          button.btn.btn-primary Зняти позначення
+          button.btn.btn-primary Зняти позначення
+          .btn-group
+            a.btn.btn-warning href="javascript:void(0)"  Warning
+            a.btn.btn-warning.dropdown-toggle data-target="#" data-toggle="dropdown" href="bootstrap-elements.html" 
+              span.caret
+            ul.dropdown-menu
+              li
+                a href="javascript:void(0)"  Action
+              li
+                a href="javascript:void(0)"  Another action
+              li
+                a href="javascript:void(0)"  Something else here
+              li.divider
+              li
+                a href="javascript:void(0)"  Separated link
+
+  #peoplelist
+    .pad
+      table.table.table-striped.table-bordered
+        tbody
+          tr
+            th
+            th ПІБ
+            th Посада
+            th Місце роботи
+            th.w50 Список нагород
+          tr ng-repeat="profile in profiles"
+            td
+              label.checkbox.checkbox-primary
+                input ng-model="profile.checked" type="checkbox"
+            td
+              a.view-link href="" ui-sref="profileEdit({id: profile.id})"
+                | {{profile.full_name}}
+            td
+              p ng-bind="profile.post"
+            td
+              p ng-bind="profile.workplace_title"
+            td
+              p ng-repeat="award in profile.awards"
+                | {{ award }}
+  

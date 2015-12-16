@@ -1,6 +1,8 @@
 module.controller 'MainCtrl', [
   '$scope'
   '$state'
-  ($scope, $state) ->
+  'Account'
+  ($scope, $state, Account) ->
     console.log('All right, MAIN!')
+    $scope.currentUser = Account.$find('current')
 ]

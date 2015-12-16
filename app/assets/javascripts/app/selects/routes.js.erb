@@ -1,0 +1,9 @@
+module.config(['$stateProvider',
+  function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('selects', {
+        url: '/selects',
+        templateUrl: "<%= asset_url 'selects/index' %>",
+        controller: 'SelectsCtrl'
+      })
+}]);
