@@ -1,8 +1,10 @@
 .row
   .col-xs-5.col-center
     h2
-      | Вхід в систему
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      | Подати документи
+    i Ви повинні мати обліковий запис. Якщо у Вас його немає - натисніть "Створити обліковий запис"
+    hr
+    = form_for(@petitioner, url: petitioner_session_path) do |f|
       .field
         = f.email_field :email, class: 'w100 form-control floating-label', required: true, placeholder: 'Емейл'
       br
@@ -17,5 +19,7 @@
         br
       .actions
         = f.submit "Увійти", class: 'btn btn-primary'
-        = link_to 'Подати документи', new_petitioner_session_path, class: 'btn btn-warning f-right'
-    = render "devise/shared/links"
+        = link_to 'Створити обліковий запис', new_petitioner_registration_path, class: 'btn btn-warning f-right'
+      br
+      = link_to 'Не вдається згадати пароль?', new_petitioner_password_path
+

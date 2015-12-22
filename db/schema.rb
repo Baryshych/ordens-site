@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019210102) do
+ActiveRecord::Schema.define(version: 20151222111735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,63 @@ ActiveRecord::Schema.define(version: 20151019210102) do
     t.text     "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "petitioners", force: :cascade do |t|
+    t.string   "name"
+    t.string   "post"
+    t.string   "phone"
+    t.text     "workplace"
+    t.text     "address"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "petitioners", ["email"], name: "index_petitioners_on_email", unique: true, using: :btree
+  add_index "petitioners", ["reset_password_token"], name: "index_petitioners_on_reset_password_token", unique: true, using: :btree
+
+  create_table "petitions", force: :cascade do |t|
+    t.integer  "petitioner_id"
+    t.integer  "award_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "middle_name"
+    t.string   "nationality"
+    t.string   "home_address"
+    t.string   "home_phone"
+    t.string   "work_phone"
+    t.string   "award_type"
+    t.string   "status"
+    t.integer  "years_worked_total"
+    t.integer  "years_worked_on_current_place"
+    t.integer  "education_degree_id"
+    t.integer  "science_degree_id"
+    t.date     "born_at"
+    t.boolean  "male",                          default: true
+    t.text     "education"
+    t.text     "post"
+    t.text     "archievements"
+    t.text     "special_degree"
+    t.text     "party_membership"
+    t.text     "award_cause"
+    t.text     "comment"
+    t.text     "workplace"
+    t.text     "workplace_address"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   create_table "profiles", force: :cascade do |t|

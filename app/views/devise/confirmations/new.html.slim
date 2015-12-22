@@ -1,11 +1,13 @@
-h2
-  | Resend confirmation instructions
-= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
-  .actions
-    = f.submit "Resend confirmation instructions"
-= render "devise/shared/links"
+br
+.col-sm-8.alert.alert-warning.col-center
+  h2 Не вдалося активувати акаунт
+.col-sm-4.col-center
+  br
+  i Помилка під час активації. Для отримання нового листа актривації, введіть свою електронну адресу нижче і натисніть "Відправити лист активації ще раз"
+  hr
+  = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+    .field
+      = f.email_field :email, class: 'w100 form-control floating-label', required: true, placeholder: 'Електронна адреса', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
+    .actions
+      = f.submit "Відправити лист активації ще раз", class: 'btn btn-primary'
+  = render "devise/shared/links"

@@ -20,5 +20,6 @@
 //= require_tree ./angular
 //= require app
 //= require plugins/sifter
+//= require_tree ./plugins/moment
 //= require_tree .
 //= require init

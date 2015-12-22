@@ -27,3 +27,7 @@ h6,
 .f-right {
   float: right;
 }
+.col-center {
+  float: none;
+  margin: 0 auto;
+}

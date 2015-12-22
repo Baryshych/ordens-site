@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  get 'test', to: 'petitions#test'
+  
   root to: 'dashboard#index'
   get 'dashboard', to: 'dashboard#index'
   devise_for :users
@@ -16,4 +19,12 @@ Rails.application.routes.draw do
 
     get 'account/current', to: 'application#current_account'
   end
+
+  # petitions
+  resources :petitions
+  devise_for :petitioners, controllers: {
+    sessions: 'petitioners/sessions',
+    registrations: 'petitioners/registrations',
+    confirmations: 'petitioners/confirmations'
+  }
 end

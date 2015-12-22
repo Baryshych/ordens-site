@@ -1,0 +1,121 @@
+.profile-form.petitions-page
+  = form_for(@petition, html: { class: 'form col-xs-12' }) do |f|
+    #people-data.row
+      = render 'shared/flash_notices'
+      .people.col-md-5
+        h3 Основні дані
+        div
+          table
+            tbody
+              tr
+                td Прізвище
+                td
+                  = f.text_field :last_name, class: 'form-control', autofocus: true
+              tr
+                td Ім'я
+                td
+                  = f.text_field :first_name, class: 'form-control'
+              tr
+                td По-батькові
+                td
+                  = f.text_field :middle_name, class: 'form-control'
+              tr
+                td Дата народження
+                td
+                  = f.text_field :born_at, class: 'form-control w50 datepicker3'
+              tr
+                td Стать
+                td.radio.radio-primary
+                  label
+                    = f.radio_button :male, true
+                    | Чоловіча
+                  label
+                    = f.radio_button :male, false
+                    | Жіноча
+              tr
+                td.name Національність
+                td.input
+                  = f.text_field :nationality, class: 'form-control', size: '60'
+              tr
+                td.name Телефон
+                td.input
+                  = f.text_field :home_phone, class: 'form-control', size: '60'
+              tr
+                td colspan="2"
+                  .name Домашня адреса
+                  .input
+                  = f.text_area :home_address, class: 'form-control', rows: '3'
+              tr
+                td colspan="2"
+                  br
+                  .name Наукові праці, проф. досягнення (1000 символів максимум)
+                  = f.text_area :archievements, class: 'form-control', rows: "5", maxlength: 1000
+        
+      .people.col-md-7
+        h3 Персональні дані
+        div
+          table
+            tbody
+              tr
+                td.name Місце роботи
+                td.input
+                  = f.text_area :workplace, class: 'form-control', rows: "2"
+              tr
+                td.name Посада
+                td.input
+                  = f.text_field :post, class: 'form-control'
+              
+              tr
+                td.name Партійність
+                td.input
+                  = f.text_area :party_membership, class: 'form-control', size: '60'
+              tr
+                td.name Освіта
+                td.input
+                  = f.text_area :education, class: 'form-control', rows: "2"
+              tr
+                td.name Науковий ступінь
+                td.input
+                  = f.collection_select :science_degree_id, ScienceDegree.select(:id, :title), :id, :title, {include_blank:  false}, { class: 'form-control selectize'}
+
+              tr
+                td.name Вчене звання
+                td.input
+                  = f.collection_select :education_degree_id, EducationDegree.select(:id, :title), :id, :title, {include_blank:  false}, { class: 'form-control selectize'}
+
+              tr
+                td.name Спеціальне звання
+                td.input
+                  = f.text_field :special_degree, class: 'form-control', size: '60'
+              tr
+                td.name Робоча адреса
+                td.input
+                  = f.text_area :workplace_address, class: 'form-control', rows: "2"
+              tr
+                td.name Робочий телефон
+                td.input
+                  = f.text_field :work_phone, class: 'form-control', size: '60'
+              tr
+                td.name Робочий стаж
+                td.input.works-o-service
+                  = f.text_field :years_worked_total, type: "number"
+                  span на поточному місці
+                  = f.text_field :years_worked_on_current_place, type: "number"
+    .row
+      .col-md-6
+        h3 Дані про нагороду
+        .form-group
+          span.name Назва нагороди
+          = f.collection_select :award_id, AwardType.select(:id, :title), :id, :title, {include_blank:  true }, { class: 'form-control selectize'}
+        .form-group
+          span.name Причина нагородження (1000 символів максимум)
+          = f.text_area :award_cause, class: 'form-control', rows: "4", maxlength: 2000
+      .col-md-6
+        h3 Додатково
+        .form-group
+          span.name Інші дані, примітки, зауваження (2000 символів максимум)
+          = f.text_area :comment, class: 'form-control', rows: "8", maxlength: 1000
+    .row
+      .col-sm-12
+        = f.submit 'Зберегти', class: 'btn btn-success'
+  .clearfix

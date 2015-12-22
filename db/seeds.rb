@@ -77,6 +77,10 @@ people.each do |profile|
     # puts "#{profile['id']} -- saved"
   else
     puts "!!! #{profile['id']} -- NOT saved"
+    puts p.errors.full_messages
+    puts '************'
+    p profile
+    puts '************'
     @failed_ids ||= []
     @failed_ids << profile['id']
   end 
@@ -139,7 +143,13 @@ def find_or_create_award_type(old_id)
   return if old_id.blank?
   @atypes ||= JSON.parse(File.read(Rails.root.to_s + '/scripts/dumps/awardtypes.json'))
   type = @atypes.find{ |x| x['id'] == old_id.to_s }
-  return if type.nil? || type['text'].blank?
+  return if type.nil?
+  if type['text'].blank?
+    return @unknown_award if @unknown_award 
+    @unknown_award = AwardType.new(user_id: @user.id)
+    @unknown_award.save(validate: false)
+    return @unknown_award
+  end
   category = find_or_create_category(type['category'])
   AwardType.find_or_create_by!(title: type['text'], user_id: @user.id,
                                award_category: category)
@@ -186,6 +196,13 @@ ordens.each do |award|
     # puts "#{award['id']} -- saved"
   else
     puts "!!! #{award['id']} -- NOT saved"
+    puts a.errors.full_messages
+    puts '***************'
+    puts award
+    puts '==============='
+    puts a
+    puts '***************'
+    abort
     @failed_ids2 ||= []
     @failed_ids2 << award['id']
   end 

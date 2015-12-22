@@ -1,0 +1,32 @@
+.petitions-page
+  #searchbox
+    .panel
+      .row
+        .col-xs-6
+          h3.panel-title Ваші заявки
+        .col-xs-6
+          .searchbox
+            input#search.form-control.w100 placeholder="Пошук" type="text" value=params[:search]
+            i.fa.fa-search
+  .col-xs-12
+    table.table.table-striped.table-bordered
+      tbody
+        tr
+          th ПІБ
+          th Посада
+          th Місце роботи
+          th Нагорода
+          th Статус
+        - @petitions.each do |p|
+          tr
+            td
+              = p.full_name
+              .cleafix
+              - if p.status == Petition::NEW
+                a.btn.btn-xs.btn-outline.btn-warning href=edit_petition_path(p) Редагувати
+                a.btn.btn-xs.btn-outline.btn-danger href=petition_path(p) data-method="DELETE" data-confirm="Ви впевнені що хочете видалити запис?"
+                 | Видалити
+            td= p.post
+            td= p.workplace
+            td= p.award_type.try(:title)
+            td= p.status

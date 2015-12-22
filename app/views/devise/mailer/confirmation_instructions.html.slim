@@ -1,8 +1,44 @@
-p
-  | Welcome 
-  = @email
-  | !
-p
-  | You can confirm your account email through the link below:
-p
-  = link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
+doctype html
+html xmlns="http://www.w3.org/1999/xhtml" 
+  head
+    meta content="width=device-width" name="viewport" /
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title Actionable emails e.g. reset password
+    = stylesheet_link_tag 'email_style'
+  body
+    table.body-wrap
+      tr
+        td
+        td.container width="600" 
+          .content
+            table.main cellpadding="0" cellspacing="0" width="100%" 
+              tr
+                td.content-wrap
+                  table cellpadding="0" cellspacing="0" 
+                    tr
+                      td.head
+                        img.img-responsive src="http://mon.knuba.edu.ua/images/logo.png"
+                        span
+                          h3 Міністерство освіти і науки України
+
+                    tr
+                      td.content-block
+                        h3 = "Доброго дня #{@resource.name}!"
+                    tr
+                      td.content-block
+                        | Для активації вашого облікового запису перейдіть за посиланням нижче. Якщо Ви не реєструвалися на сайті для подачі заявок і не розумієте чому отримали цей лист - просто видаліть його.
+                    tr
+                      td.content-block
+                        | Активація необхідна для підтвердження того що Ви дійсно є власник даної емейл адреси.
+                    tr
+                      td.content-block.aligncenter
+                        = link_to 'Активувати аккаунт', confirmation_url(@resource, confirmation_token: @token), class: 'btn-primary'
+            .footer
+              table width="100%" 
+                tr
+                  td.aligncenter.content-block
+                    a href="http://mon.knuba.edu.ua" Перейти на сайт
+                    p
+                      = Time.now.year
+                      | &copy;
+        td

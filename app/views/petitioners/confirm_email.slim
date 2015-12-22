@@ -1,0 +1,19 @@
+.row
+  .col-xs-12
+    .well style="padding:0"
+      .alert.alert-warning.text-center
+        h2 Ви не підтвердили вашу емейл адресу.
+  .col-sm-8.col-sm-offset-2
+    h4
+      | Лист з активацією був відправлений на адресу: 
+      strong = current_petitioner.email
+      |  o 
+      i = current_petitioner.confirmation_sent_at.strftime('%d.%m.%Y %H:%M')
+      | .
+    br
+    br
+    br
+    p 
+      | Не вдається активувати акаунт? Пишіть сюди 
+      a href="mailto:alex.hh@me.com" alex.hh@me.com
+      | .

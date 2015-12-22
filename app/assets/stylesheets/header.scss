@@ -1,0 +1,17 @@
+.site-header {
+  .navbar {
+    background: none !important;
+    margin-top: 10px;
+  }
+  .navbar-brand {
+    padding: 0;
+    img {
+      height: 100%;
+      float: left;
+      margin-right: 10px;
+    }
+  }
+  li + li {
+    margin-left: 5px;
+  }
+}

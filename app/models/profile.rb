@@ -12,7 +12,7 @@ class Profile < ActiveRecord::Base
   validates :first_name, :last_name, :middle_name, :nationality,
             :home_address, :home_phone, :work_phone,
             length: { maximum: 255 }
-  validates :first_name, :last_name, presence: true
+  validates :last_name, presence: true
 
   scope :newest, -> { order('created_at DESC') }
   

@@ -11,10 +11,7 @@ body{
 #header a{
   color: white;
 }
-#header .section, #maincontent{
-  margin: 0 auto;
-  width: 1300px;
-}
+
 .section {
   position: relative;
 }

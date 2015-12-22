@@ -1,0 +1,40 @@
+.row
+  .col-xs-5.col-center
+    h2
+      | Новий обліковий запис
+    i Всі поля обов’язкові
+    - if flash.any?
+      = render 'shared/flash_notices'
+    hr
+    = form_for(@petitioner, url: petitioner_registration_path) do |f|
+      .field
+        = f.email_field :email, class: 'w100 form-control floating-label', required: true, placeholder: 'Емейл'
+      br
+      .field
+        = f.text_field :name, class: 'w100 form-control floating-label', required: true, placeholder: 'Повне ім’я'
+      br
+      .field
+        = f.text_field :phone, class: 'w100 form-control floating-label', required: true, placeholder: 'Номер телефону'
+      br
+      .field
+        = f.text_area :post, class: 'w100 form-control floating-label', required: true, placeholder: 'Посада', rows: 2
+      br
+      .field
+        = f.text_area :workplace, class: 'w100 form-control floating-label', required: true, placeholder: 'Місце роботи', rows: 5
+      br
+      .field
+        = f.text_area :address, class: 'w100 form-control floating-label', required: true, placeholder: 'Поштова адреса', rows: 5
+      br
+      .field
+        = f.password_field :password, autocomplete: "off", class: 'w100 form-control floating-label', required: true, placeholder: 'Пароль'
+      br
+      .field
+        = f.password_field :password_confirmation, autocomplete: "off", class: 'w100 form-control floating-label', required: true, placeholder: 'Повторіть пароль'
+        br
+      .actions
+        = f.submit "Створити запис", class: 'btn btn-primary'
+      br
+      = link_to 'Увійти', new_petitioner_session_path
+      br
+      = link_to 'Не вдається згадати пароль?', new_petitioner_password_path
+

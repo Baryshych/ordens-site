@@ -132,72 +132,26 @@ uk:
   activerecord:
     errors:
       models:
-        article:
+        petitioner:
           attributes:
-            content:			
-              *errors
-            title:
-              *errors
-        user:
-          attributes:
-            username:      
+            email:      
               *errors
             post:      
               *errors
-            email:
+            phone:
+              *errors
+            workplace:
+              *errors
+            address:
               *errors
             name:
               blank:      'не може бути пустим'
               invalid:    'неправильного формату, необхідно ПІБ (Іванов Іван Іванович)'
-            scan:
-              *errors
             password:
               *errors
             current_password:
               *errors
             password_confirmation:
-              *errors
-        university:
-          attributes:
-            name:
-              *errors
-            chancellor:
-              *errors
-            logo:
-              *errors
-        department:
-          attributes:
-            name:
-              *errors
-        scope:
-          attributes:
-            code:
-              *errors
-            name:
-              *errors
-            branch:
-              *errors
-        scientist:
-          attributes:
-            first_name_uk: 
-              *errors
-            middle_name_uk:
-              *errors
-            second_name_uk:
-              *errors
-            first_name_ru: 
-              *errors
-            middle_name_ru:
-              *errors
-            second_name_ru:
-              *errors
-            born_at:       
-              *errors
-            post:          
-              *errors
-            science_degree:
-              *errors
-            academic_title:
               *errors
 
     models:
@@ -209,11 +163,17 @@ uk:
         title:		'Заголовок'
         content:	'Вміст'
         url:		  'Шлях'
-      user:
+      petition:
+        award_cause: 'Причина нагородження'
+        second_name: "Прізвище"
+        workplace: "Місце роботи"
+      petitioner:
         username:               'Логін'
         name:                   "Прізвище, ім'я, по батькові"
         post:                   'Посада'
-        email:                  'Електронна пошта'
+        workplace:                   'Місце роботи'
+        address:                   'Поштова адреса'
+        email:                  'Електронна адреса'
         scan:                   'Відсканований документ'
         password:               'Пароль'
         current_password:       'Поточний пароль'

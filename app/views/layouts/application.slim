@@ -8,32 +8,8 @@ html
     = javascript_include_tag 'application'
     = csrf_meta_tags
   body
-    .hover hidden="hidden" 
-      .aloader
-        img src=("/images/loader.gif") /
-    header#header.clearfix role="banner" 
-      .section
-        .section-1
-          .logo
-            a#logo.base_url href=("") rel="home" title=("На головну") 
-              img alt="Герб" src=("/images/logo.png") /
-          .site-name
-            span.mon Міністерство освіти і науки України
-            a href=("") title=("На головну") 
-              span Департамент роботи з персоналом та керівними кадрами
-        .section-2
-          ul.topmenu
-            - if current_user.present?
-              li
-                a href="#" 
-                  | Menu link
-            - else
-              li
-                a href=new_user_session_path
-                  | Увійти
-      li
-        span анкор?
-    #maincontent
+    = render 'layouts/navbar'
+    #maincontent.container
       .inner.main
         - if flash.any?
           br

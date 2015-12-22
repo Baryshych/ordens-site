@@ -33,6 +33,6 @@ module OrdenSite
     config.active_record.raise_in_transactional_callbacks = true
     config.time_zone = 'Kyiv'
     config.i18n.default_locale = :uk
-    config.i18n.fallbacks = [:en]
+    config.i18n.fallbacks = {'uk' => 'en'}
   end
 end
