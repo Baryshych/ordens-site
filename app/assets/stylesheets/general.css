@@ -31,3 +31,6 @@ h6,
   float: none;
   margin: 0 auto;
 }
+.nomarg {
+  margin: 0;
+}

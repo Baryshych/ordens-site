@@ -1,0 +1,133 @@
+.panel
+  .row
+    .col-sm-3
+      h3 Додано користувачем:
+    .col-sm-9
+      p.nomarg ng-bind="petition.petitioner.name"
+      p.nomarg ng-bind="petition.petitioner.post"
+      p.nomarg ng-bind="petition.petitioner.workplace"
+      p.nomarg ng-bind="petition.petitioner.phone"
+      p.nomarg ng-bind="petition.petitioner.email"
+.profile-form.petitions-page
+  form.form.col-xs-12
+    #people-data.row
+      .people.col-md-5
+        h3 Основні дані
+        div
+          table
+            tbody
+              tr
+                td Прізвище
+                td
+                  input.form-control type="text" ng-model="petition.last_name"
+              tr
+                td Ім'я
+                td
+                  input.form-control type="text" ng-model="petition.first_name"
+              tr
+                td По-батькові
+                td
+                  input.form-control type="text" ng-model="petition.middle_name"
+              tr
+                td Дата народження
+                td
+                  input.form-control type="text" value="{{petition.born_at | date: 'dd.MM.yyyy'}}"
+              tr
+                td Стать
+                td.radio.radio-primary
+                  label
+                    input type="radio" ng-model="petition.male" value="1"
+                    | Чоловіча
+                  label
+                    input type="radio" ng-model="petition.male" value="0"
+                    | Жіноча
+              tr
+                td.name Національність
+                td.input
+                  input.form-control type="text" ng-model="petition.nationality"
+              tr
+                td.name Телефон
+                td.input
+                  input.form-control type="text" ng-model="petition.home_phone"
+              tr
+                td colspan="2"
+                  .name Домашня адреса
+                  .input
+                  textarea.form-control ng-model="petition.home_address"
+              tr
+                td colspan="2"
+                  br
+                  .name Наукові праці, проф. досягнення (1000 символів максимум)
+                  textarea.form-control ng-model="petition.archievements"
+        
+      .people.col-md-7
+        h3 Персональні дані
+        div
+          table
+            tbody
+              tr
+                td.name Місце роботи
+                td.input
+                  textarea.form-control ng-model="petition.workplace" rows="2"
+              tr
+                td.name Посада
+                td.input
+                  input.form-control type="text" ng-model="petition.post"
+              
+              tr
+                td.name Партійність
+                td.input
+                  textarea.form-control ng-model="petition.party_membership"
+              tr
+                td.name Освіта
+                td.input
+                  textarea.form-control ng-model="petition.education" rows="2"
+              tr
+                td.name Науковий ступінь
+                td.input
+                  input.form-control type="text" ng-model="petition.science_degree_title"
+
+              tr
+                td.name Вчене звання
+                td.input
+                  input.form-control type="text" ng-model="petition.education_degree_title"
+              tr
+                td.name Спеціальне звання
+                td.input
+                  input.form-control type="text" ng-model="petition.special_degree"
+              tr
+                td.name Робоча адреса
+                td.input
+                  textarea.form-control ng-model="petition.workplace_address", rows: "2"
+              tr
+                td.name Робочий телефон
+                td.input
+                  input.form-control type="text" ng-model="petition.work_phone"
+              tr
+                td.name Робочий стаж
+                td.input.works-o-service
+                  input.form-control type="number" ng-model="petition.years_worked_total"
+                  span на поточному місці
+                  input.form-control type="number" ng-model="petition.years_worked_on_current_place"
+    .row
+      .col-md-6
+        h3 Дані про нагороду
+        .form-group
+          span.name Назва нагороди
+          input.form-control type="text" ng-model="petition.award_type_title"
+        .form-group
+          span.name Причина нагородження (1000 символів максимум)
+          textarea.form-control ng-model="petition.award_cause" rows="4"
+      .col-md-6
+        h3 Додатково
+        .form-group
+          span.name Інші дані, примітки, зауваження (2000 символів максимум)
+          textarea.form-control ng-model="petition.comment" rows="8"
+    .row
+      .col-sm-12
+        .btn-group
+          button.btn.btn-success ng-click="import()"
+            | Імпортувати
+          button.btn.btn-danger style="margin-left: 10px;" ng-click="decline()"
+            | Відхилити
+  .clearfix

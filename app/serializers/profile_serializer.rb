@@ -5,7 +5,8 @@ class ProfileSerializer < ActiveModel::Serializer
              :party_membership, :first_name, :last_name, :middle_name,
              :nationality, :home_address, :home_phone, :work_phone,
              :science_degree_id, :education_degree_id, :workplace_id,
-             :creator_name, :formatted_created_at, :formatted_updated_at
+             :creator_name, :formatted_created_at, :formatted_updated_at,
+             :workplace_title
 
   def awards
     object.awards.includes(:award_type,
@@ -25,5 +26,9 @@ class ProfileSerializer < ActiveModel::Serializer
 
   def formatted_updated_at
     object.updated_at.strftime('%d.%m.%Y %H:%M')
+  end
+
+  def workplace_title
+    object.workplace.try(:title)
   end
 end

@@ -1,0 +1,47 @@
+module.controller 'PetitionCtrl', [
+  '$scope'
+  '$state'
+  '$stateParams'
+  'Petition'
+  '$http'
+  '$uibModal'
+  ($scope, $state, $stateParams, Petition, $http, $uibModal) ->
+
+    petitionId = $stateParams.id
+    $scope.petition = Petition.$find(petitionId)
+
+    $scope.decline =->
+      $scope.petition.status = '<%= Petition::DECLINED %>'
+      $scope.petition.$save()
+      $state.go('petitions')
+      toastr['success']('Заявку відхилено')
+
+    $scope.import =()->
+      $http.get("/api/v1/petitions/#{petitionId}/similar").then (response)->
+        result = response.data['profiles']
+        if result.length > 0
+          modal = $uibModal.open(
+            templateUrl: '<%= asset_path("profiles/similar") %>',
+            controller: 'ProfilesSimilarCtrl',
+            resolve: {
+              similars: ->
+                result
+            }
+          )
+          modal.result.then((save)->
+            if save
+              importPetition(petitionId)
+          )
+    importPetition = (petitionId)->
+      $http.post("/api/v1/petitions/#{petitionId}/import").then(
+        (response)->
+          profileId = response.data.profile.id
+          toastr['success']('Успішно імпортовано.')
+          $state.go('profileEdit', id: profileId)
+        ()->
+          toastr['error']('Не вдалося імпортувати, зверніться до адміністратора.')
+      )
+
+
+
+]

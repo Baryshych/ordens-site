@@ -16,7 +16,13 @@ Rails.application.routes.draw do
     resources :award_types, only: [:index, :show, :update, :create]
     resources :petition_initiators, only: [:index, :show, :update, :create]
     resources :document_qualities, only: [:index, :show, :update, :create]
-
+    resources :petitions, controller: 'admin_petitions', as: 'admin_petitions' do
+      member do
+        get 'similar'
+        post 'import'
+      end
+    end
+    resources :petitioners
     get 'account/current', to: 'application#current_account'
   end
 

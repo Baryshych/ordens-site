@@ -22,7 +22,7 @@ module.factory('Filter', ['$timeout', ($timeout) ->
         if oldSet != newSet
           console.log('filters triggered')
           queryParams = newSet
-          queryParams['search'] = newSearch
+          queryParams['search'] = $scope.search
           loadItems(queryParams)
           console.log('timeout ended')
       true

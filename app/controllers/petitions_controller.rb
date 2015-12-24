@@ -32,6 +32,7 @@ class PetitionsController < ApplicationController
   def create
     @petition = Petition.new(petition_params)
     @petition.petitioner_id = current_petitioner.id
+    @petition.status = Petition::NEW
     if @petition.save
       redirect_to petitions_path, notice: 'Заявку успішно додано'
     else

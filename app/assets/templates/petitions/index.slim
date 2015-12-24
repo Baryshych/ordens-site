@@ -1,0 +1,48 @@
+.petitions-page
+  #searchbox
+    .panel
+      .row
+        .col-sm-6
+          .searchbox
+            input.form-control.w100 ng-model="search" placeholder="Пошук" type="text" /
+            i.fa.fa-search
+        .col-sm-3
+          .searchbox
+            selectize.form-control config='statusConfig' options='statuses' ng-model="filters.status" 
+        .col-sm-3
+          .searchbox
+            selectize.form-control config='petitionersConfig' options='petitioners' ng-model="filters.petitioners_id" 
+  #peoplelist
+    table.table.table-striped.table-bordered.table-hover
+      tbody
+        tr
+          th Дата
+          th ПІБ
+          th Посада
+          th Місце роботи
+          th Нагорода
+          th Ким додано
+        tr dir-paginate="petition in petitions | itemsPerPage: 20" total-items="totalEntries" current-page="currentPage"
+          td 
+            p
+              | {{ petition.formatted_date }}
+            p
+              | {{ petition.formatted_time }}
+            p class="label label-{{petition.status_class}}"
+              | {{ petition.status }}
+          td
+            a href="#" ui-sref="petitionShow({id: petition.id})"
+              | {{ petition.full_name }}
+          td
+            p ng-bind="petition.post"
+          td
+            p ng-bind="petition.workplace"
+          td
+            p ng-bind="petition.award_type_title"
+          td
+            p ng-bind="petition.petitioner.name"
+            p ng-bind="petition.petitioner.email"
+            p ng-bind="petition.petitioner.phone"
+    .text-center
+      dir-pagination-controls boundary-links="true" on-page-change="getPage(newPageNumber)" template-url=asset_path('shared/pagination')
+  

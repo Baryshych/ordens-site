@@ -1,0 +1,19 @@
+module.config(['$stateProvider',
+  function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('petitions', {
+        url: '/petitions?page?search',
+        templateUrl: "<%= asset_url 'petitions/index' %>",
+        controller: 'PetitionsCtrl'
+      })
+      .state('petitionShow', {
+        url: '/petitions/:id',
+        templateUrl: "<%= asset_url 'petitions/edit' %>",
+        controller: 'PetitionCtrl'
+      })
+      .state('petitionImport', {
+        url: '/petitions/:id',
+        templateUrl: "<%= asset_url 'petitions/edit' %>",
+        controller: 'PetitionCtrl'
+      })
+}]);

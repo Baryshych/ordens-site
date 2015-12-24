@@ -7,9 +7,13 @@ class Petition < ActiveRecord::Base
   IMPORTED = 'Прийнято до розгляду'
 
   belongs_to :petitioner
+  belongs_to :education_degree
+  belongs_to :science_degree
   belongs_to :award_type, foreign_key: :award_id
 
   validates :last_name, :workplace, :award_cause, presence: true
+
+  scope :newest, -> { order('petitions.created_at DESC') }
 
   def full_name
     [last_name, first_name, middle_name].compact.join(' ')

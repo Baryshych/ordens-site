@@ -1,0 +1,53 @@
+module.controller 'PetitionsCtrl', [
+  '$scope'
+  '$state'
+  'Petition'
+  'Petitioner'
+  '$stateParams'
+  '$timeout'
+  'Filter'
+  ($scope, $state, Petition, Petitioner, $stateParams, $timeout, Filter) ->
+    searchPromise = false
+
+    queryParams = { page: $scope.currentPage, search: $scope.search }
+
+    loadItems =(queryParams)->
+      Petition.$search(queryParams).$then (result) ->
+        $scope.petitions = result
+        $scope.perPage = result.$metadata["per_page"]
+        $scope.totalEntries = result.$metadata["total_entries"]
+    loadItems()
+
+    Filter.search($scope, queryParams, loadItems)
+    Filter.watch($scope, queryParams, loadItems)
+
+    Petitioner.$search().$then (result) ->
+      result.unshift({id: ' ', name: 'Будь-який користувач'})
+      $scope.petitioners = result
+
+    $scope.petitionersConfig = {
+      create: false,
+      valueField: 'id',
+      labelField: 'name',
+      searchField: 'name',
+      delimiter: '|',
+      placeholder: 'Будь-який користувач',
+      maxItems: 1
+    }
+
+    $scope.statuses = [
+      { value: " ", text: 'Усі заявки' },
+      { value: '<%= Petition::NEW %>', text: '<%= Petition::NEW %>' },
+      { value: '<%= Petition::IMPORTED %>', text: '<%= Petition::IMPORTED %>' },
+      { value: '<%= Petition::DECLINED %>', text: '<%= Petition::DECLINED %>' }
+    ]
+
+    $scope.statusConfig = {
+      create: false,
+      valueField: 'value',
+      labelField: 'text',
+      searchField: 'text',
+      placeholder: 'Усі заявки',
+      maxItems: 1
+    }
+]

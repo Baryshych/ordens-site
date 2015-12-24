@@ -7,7 +7,7 @@ class Profile < ActiveRecord::Base
   belongs_to :workplace
   belongs_to :science_degree
   belongs_to :education_degree
-  has_many :awards
+  has_many :awards, dependent: :destroy
 
   validates :first_name, :last_name, :middle_name, :nationality,
             :home_address, :home_phone, :work_phone,
@@ -15,5 +15,4 @@ class Profile < ActiveRecord::Base
   validates :last_name, presence: true
 
   scope :newest, -> { order('created_at DESC') }
-  
 end

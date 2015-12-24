@@ -7,8 +7,12 @@
   }
   .selectize-input {
     background: #fff !important;
+    padding-left: 10px !important;
   }
   form.form {
     padding: 5px 25px;
+  }
+  input, textarea, select {
+    font-weight: bold;
   }
 }
