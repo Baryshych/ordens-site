@@ -24,10 +24,9 @@ group :development, :test do
   gem 'pry'
   gem 'capistrano', '2.15.6'
   gem 'rvm-capistrano', require: false
-end
-
-group :development do
   gem 'spring'
   gem 'quiet_assets'
 end
-
+group :production do
+  gem 'unicorn'
+end
