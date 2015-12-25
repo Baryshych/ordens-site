@@ -105,11 +105,11 @@ module.controller 'AwardCtrl', [
     }
 
     $scope.awardStatuses = [
-      { value: 'очікує розгляду' },
-      { value: 'підтримано' },
-      { value: 'відхилено' },
-      { value: 'підтримано як виняток' },
-      { value: 'знято з розгляду' }
+      { value: '<%= Award::WAITING %>' },
+      { value: '<%= Award::APPROVED %>' },
+      { value: '<%= Award::DECLINED %>' },
+      { value: '<%= Award::APPROVED_AS_EXCEPTION %>' },
+      { value: '<%= Award::WITHDRAWN %>' }
     ]
     $scope.awardStatusesConfig = {
       create: false,

@@ -1,0 +1,19 @@
+module.controller 'ReportCtrl', [
+  '$scope'
+  '$http'
+  '$stateParams'
+  'Report'
+  ($scope, $http, $stateParams, Report) ->
+    $scope.profiles = []
+
+    Report.$search(id: $stateParams.id).$then(
+      (response)->
+        $scope.profiles = response
+      ()->
+        toastr['error']('Помилка під час генерації')
+        $scope.profiles = [{error: ' '}]
+    )
+
+   
+]
+

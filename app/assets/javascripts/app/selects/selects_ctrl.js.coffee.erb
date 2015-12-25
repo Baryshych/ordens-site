@@ -1,0 +1,56 @@
+module.controller 'SelectsCtrl', [
+  '$scope'
+  '$state'
+  'Profile'
+  '$timeout'
+  '$uibModal'
+  '$http'
+  ($scope, $state, Profile, $timeout, $uibModal, $http) ->
+
+    $scope.filters = { per_page: 50 }
+
+    loadProfiles =(queryParams)->
+      Profile.$search(queryParams).$then (result) ->
+        $scope.profiles = result
+        
+    loadProfiles($scope.filters)
+
+    $scope.selectAll =->
+      for profile in $scope.profiles
+        profile.checked = true
+
+    $scope.selectNone =->
+      for profile in $scope.profiles
+        profile.checked = false
+
+    $scope.selectInvert =->
+      for profile in $scope.profiles
+        profile.checked = !profile.checked
+
+    $scope.setFilters = ->
+      modal = $uibModal.open(
+        templateUrl: '<%= asset_path("selects/filters") %>',
+        controller: 'SelectFiltersCtrl',
+        resolve: {
+          filters: ->
+            $scope.filters
+        }
+      ) 
+      modal.result.then((filters)->
+        $scope.filters = filters
+        loadProfiles($scope.filters)
+      )
+
+    $scope.generate = (report_id)->
+      profiles = []
+      for profile in $scope.profiles
+        profiles.push(profile.id) if profile.checked
+      if profiles.length < 1
+        toastr['warning']('Виберіть анкети для генерації звіту')
+        return
+      $http.post('/api/v1/reports', { profiles: profiles, report_id: report_id }).then(
+        (response)->
+          $state.go('reportShow', { id: response.data.id })
+      )
+]
+

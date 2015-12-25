@@ -68,4 +68,8 @@ class AdminPetitionsController < ApplicationController
     petition.update_column('status', Petition::IMPORTED)
     render json: profile, root: 'profile'
   end
+
+  def new_count
+    render json: { count: Petition.where(status: Petition::NEW).count }
+  end
 end

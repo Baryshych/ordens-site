@@ -15,4 +15,14 @@ class Profile < ActiveRecord::Base
   validates :last_name, presence: true
 
   scope :newest, -> { order('created_at DESC') }
+
+  attr_accessor :error
+
+  def last_award
+    awards.last
+  end
+
+  def full_name
+    [last_name, first_name, middle_name].compact.join(' ')
+  end
 end

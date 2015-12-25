@@ -3,24 +3,20 @@
     .panel
       .row
         .col-xs-12
-          button.btn.btn-primary Задати фільтри
-          button.btn.btn-primary Позначити всі
-          button.btn.btn-primary Зняти позначення
-          button.btn.btn-primary Зняти позначення
-          .btn-group
-            a.btn.btn-warning href="javascript:void(0)"  Warning
-            a.btn.btn-warning.dropdown-toggle data-target="#" data-toggle="dropdown" href="bootstrap-elements.html" 
+          button.btn.btn-primary.btn-sm ng-click="setFilters()" Задати фільтри
+          button.btn.btn-primary.btn-sm ng-click="selectAll()" Позначити всі
+          button.btn.btn-primary.btn-sm ng-click="selectNone()" Зняти позначення
+          button.btn.btn-primary.btn-sm ng-click="selectInvert()" Інвертувати
+          .btn-group.f-right
+            button.btn.btn-warning.btn-sm data-target="#" data-toggle="dropdown" 
+              | Генерувати
+            button.btn.btn-warning.btn-sm.dropdown-toggle data-target="#" data-toggle="dropdown" 
               span.caret
             ul.dropdown-menu
-              li
-                a href="javascript:void(0)"  Action
-              li
-                a href="javascript:void(0)"  Another action
-              li
-                a href="javascript:void(0)"  Something else here
-              li.divider
-              li
-                a href="javascript:void(0)"  Separated link
+              - Report.all.each do |r|
+                li
+                  a href="#/selects" ng-click="generate(#{r['id']})"
+                    = r['title']
 
   #peoplelist
     .pad
@@ -32,6 +28,8 @@
             th Посада
             th Місце роботи
             th.w50 Список нагород
+            th Дата комісії
+            th Статус розгляду
           tr ng-repeat="profile in profiles"
             td
               label.checkbox.checkbox-primary
@@ -46,4 +44,8 @@
             td
               p ng-repeat="award in profile.awards"
                 | {{ award }}
+            td
+              p ng-bind="profile.last_award.comission_date"
+            td
+              p ng-bind="profile.last_award.status"
   

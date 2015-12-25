@@ -1,6 +1,6 @@
 class ProfilesSerializer < ActiveModel::Serializer
   attributes :id, :full_name, :post, :workplace_title, :workplace_address,
-             :awards
+             :awards, :last_award
 
   def awards
     $award_types ||= AwardType.select(:id, :title)
@@ -13,6 +13,10 @@ class ProfilesSerializer < ActiveModel::Serializer
       end
       ["#{title} #{year}", year]
     end.sort_by { |x| x[1] }.reverse.map(&:first)
+  end
+
+  def last_award
+    AwardSerializer.new(object.last_award, root: false)
   end
 
   def workplace_title

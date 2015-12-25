@@ -212,3 +212,7 @@ if @failed_ids2
   puts "Failed awards"
   puts @failed_ids2
 end
+
+# clean up
+Award.where('comission_date < ?', '01.01.1971').update_all(comission_date: nil)
+Award.where('petition_got_at < ?', '01.01.1971').update_all(petition_got_at: nil)

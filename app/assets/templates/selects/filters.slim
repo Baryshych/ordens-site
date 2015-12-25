@@ -1,0 +1,61 @@
+div
+  .modal-header
+    button.close ng-click="cancel()"
+      span &times;
+
+    h3.modal-title 
+     | Виберіть параметри
+  .modal-body
+    br
+    .form-control-wrapper
+      .control-label Тип нагороди:
+      br
+      selectize.form-control config='awardCategoriesConfig' options='awardCategories' ng-model="filters.award_category_id"
+    br
+    .form-control-wrapper
+      .control-label Статус:
+      br
+      selectize.form-control config='awardStatusesConfig' options='awardStatuses' ng-model="filters.status"
+    br
+    .form-control-wrapper
+      .control-label Дата засідання:
+      br
+      .row
+        .col-sm-6
+          .control-label Від
+          .inline-block
+            input.hasDatepick.form-control [
+              ng-click="comissionDatePickerFrom = !comissionDatePickerFrom"
+              ng-model="filters.comission_date_from"
+              uib-datepicker-popup="dd.MM.yyyy"
+              is-open="comissionDatePickerFrom"
+              datepicker-options="dateOptions"
+              show-weeks="false"
+              show-button-bar="false"
+              close-on-date-selection="true"]
+        .col-sm-6
+          .control-label до
+          .inline-block
+              input.hasDatepick.form-control [
+                ng-click="comissionDatePickerTo = !comissionDatePickerTo"
+                ng-model="filters.comission_date_to"
+                uib-datepicker-popup="dd.MM.yyyy"
+                is-open="comissionDatePickerTo"
+                datepicker-options="dateOptions"
+                show-weeks="false"
+                show-button-bar="false"
+                close-on-date-selection="true"]
+    br
+    .form-control-wrapper
+      .row
+        .col-sm-3
+          .control-label Показати записів:
+          input.form-control.w50 ng-model="filters.per_page"
+    br
+  .modal-footer
+    div
+      button.btn.btn-primary.btn-raised ng-click="save()" type="button"
+        | Застосувати
+      button.btn.btn-default.btn-raised ng-click="cancel()" type="button"
+        | Відмінити
+

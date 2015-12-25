@@ -1,0 +1,51 @@
+module.controller 'SelectFiltersCtrl', [
+  '$scope'
+  '$state'
+  'filters'
+  '$modalInstance'
+  'AwardCategory'
+  ($scope, $state, filters, $modalInstance, AwardCategory) ->
+
+    $scope.filters = filters
+
+    $scope.save =()->
+      $modalInstance.close($scope.filters)
+
+    $scope.cancel =()->
+      $modalInstance.dismiss('cancel')
+
+    $scope.awardStatuses = [
+      { value: '<%= Award::WAITING %>' },
+      { value: '<%= Award::APPROVED %>' },
+      { value: '<%= Award::DECLINED %>' },
+      { value: '<%= Award::APPROVED_AS_EXCEPTION %>' },
+      { value: '<%= Award::WITHDRAWN %>' }
+    ]
+    $scope.awardStatusesConfig = {
+      create: false,
+      valueField: 'value',
+      labelField: 'value',
+      placeholder: 'Виберіть статус',
+      maxItems: 1
+    }
+
+    $scope.awardCategories = AwardCategory.$search()
+    $scope.awardCategoriesConfig = {
+      create: true,
+      valueField: 'id',
+      labelField: 'title',
+      searchField: 'title',
+      delimiter: '|',
+      placeholder: 'Виберіть категорію або введіть нову',
+      maxItems: 1
+    }
+
+    $scope.dateOptions = {
+      startingDay: 1
+    }
+
+    $scope.comissionDatePickerFrom = false
+    $scope.comissionDatePickerTo = false
+
+]
+

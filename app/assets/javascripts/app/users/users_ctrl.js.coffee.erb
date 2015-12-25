@@ -31,7 +31,7 @@ module.controller 'UsersCtrl', [
       )
       modal.result.then((userId)->
         User.$search().$then((result)->
-          loadUsers()
+          loadItems()
         )
       )
 ]

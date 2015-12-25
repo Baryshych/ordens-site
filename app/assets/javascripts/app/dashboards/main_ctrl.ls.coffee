@@ -2,9 +2,15 @@ module.controller 'MainCtrl', [
   '$scope'
   '$state'
   'Account'
-  ($scope, $state, Account) ->
-    console.log('All right, MAIN!')
+  '$http'
+  ($scope, $state, Account, $http) ->
     $scope.currentUser = Account.$find('current')
 
-    $scope.newPetitions = 3
+    $scope.newPetitions = 0
+    checkNewPetitions = ->
+      $http.get('/api/v1/petitions/new_count').then (response)->
+        $scope.newPetitions = response.data.count
+    checkNewPetitions()
+
+    setInterval(checkNewPetitions, 120000)
 ]

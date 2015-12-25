@@ -1,0 +1,14 @@
+module.config(['$stateProvider',
+  function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('reports', {
+        url: '/reports',
+        templateUrl: "<%= asset_url 'reports/index' %>",
+        controller: 'ReportsCtrl'
+      })
+      .state('reportShow', {
+        url: '/reports/:id',
+        templateUrl: "<%= asset_url 'reports/show' %>",
+        controller: 'ReportCtrl'
+      })
+}]);

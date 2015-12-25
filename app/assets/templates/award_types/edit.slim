@@ -12,6 +12,9 @@ div
       br
       input.form-control autofocus="true" ng-model="item.title"
     br
+      selectize.form-control config='awardCategoriesConfig' options='awardCategories' ng-model="item.award_category_id"
+
+    br
     .bs-component ng-show="warning"
       .alert.alert-warning
         h4 Тип нагороди вже існує:

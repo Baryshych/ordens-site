@@ -1,0 +1,16 @@
+---
+- 
+  id: 1
+  title: 'Додаток 1'
+  filters:
+    -
+      attribute: 'last_award.status'
+      expected: ['очікує розгляду', null]
+      error: 'Неправильний статус нагороди'
+  source: 'dodatok1.xslx'
+  data_generator: TableGenerator
+  file_generator: ExcelGenerator
+
+-
+  id: 2
+  title: 'Додаток 2'

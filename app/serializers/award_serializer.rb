@@ -7,4 +7,8 @@ class AwardSerializer < ActiveModel::Serializer
   def result
     object.result || 'Невідомо'
   end
+
+  def comission_date
+    object.comission_date.strftime('%d.%m.%Y') if object.comission_date
+  end
 end

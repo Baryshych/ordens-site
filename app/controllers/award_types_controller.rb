@@ -15,6 +15,16 @@ class AwardTypesController < ApplicationController
       return
     end
     award_type.user_id = current_user.id
+    # check whether we have "id" or new category name
+    # in case of id "123".to_i.to_s == "123"
+    category_id = award_type_params[:award_category_id].to_i.to_s
+    if category_id != award_type_params[:award_category_id]
+      category_id = AwardCategory.find_or_create_by(
+        title: award_type_params[:award_category_id],
+        user_id: current_user.id
+      ).id
+    end
+    award_type.award_category_id = category_id
     if award_type.save
       render json: { id: award_type.id }
     else
@@ -34,6 +44,6 @@ class AwardTypesController < ApplicationController
   private
 
   def award_type_params
-    params.permit(:title)
+    params.permit(:title, :award_category_id)
   end
 end
